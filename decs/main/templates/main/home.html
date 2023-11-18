@@ -1,0 +1,94 @@
+{% extends 'main/layout.html' %}
+{% load static %}
+
+
+{% block title %} ArtFlow {% endblock %}
+{% block content %}
+
+    <div class="intro">
+        <div class="container">
+            <div class="intro__wrapper">
+                <div class="intro__block">
+                    <h1 class="intro__title">Design Explore Create... SHOW!</h1>
+                    <p class="intro__text">Откройте для себя бескрайний поток творческих возможностей. Исследуйте новые идеи, воплощайте их в жизнь и, наконец, выходите на сцену — DECS! Здесь ваше творчество становится источником вдохновения. Добро пожаловать в мир дизайна, где каждый момент — шаг к уникальному выражению вашего таланта!</p>
+                    <a class='watch_btn' href="#">Смотреть</a>
+                </div>
+                <div class="intro__pic">
+                    <img src="{% static 'main/images/home/milad-fakurian.png' %}" alt="caw">
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="diff">
+        <div class="container">
+            <h1 class="block__title">Что делает нас особенными?</h1>
+            <div class="diff__wrapper">
+                <div class="diff__block">
+                    <div class="block1">
+                        <img src="{% static 'main/images/home/inspire.png' %}" alt="growing">
+                        <h3 class="diff__title">Вдохновляйтесь</h3>
+                        <p class="diff__text">Погружайтесь в поток идей, изысканных концепций и творческих решений, чтобы обогатить свой дизайн. Именно здесь вы найдете необходимые ресурсы для создания уникальных проектов.</p>
+                    </div>
+                </div>
+                <div class="diff__block">
+                    <div class="block2">
+                        <img src="{% static 'main/images/home/career.png' %}" alt="career">
+                        <h3 class="diff__title">Постройте свою карьеру</h3>
+                        <p class="diff__text">Продвигайте себя как профессионального фотографа. Покажите на что вы способоны
+                        и вас обязательно заметят. </p>
+                    </div>
+                </div>
+                <div class="diff__block">
+                    <div class="block3">
+                        <img src="{% static 'main/images/home/creative.png' %}" alt="status">
+                        <h3 class="diff__title">Будьте креативными</h3>
+                        <p class="diff__text">DECS ценит индивидуальное творчество. Наши пользователи — талантливые дизайнеры и художники, создающие произведения искусства, которые выделяются своей уникальностью.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="examples">
+        <h1 class="block__title">Примеры работ</h1>
+        <div class="swiper mySwiper">
+            <div class="swiper-wrapper">
+                <div class="swiper-slide">
+                    <img src="{% static 'main/images/home/lucas-k.jpg' %}">
+                    <div class="pic-caption">Автор: Lucas K</div>
+                </div>
+                <div class="swiper-slide">
+                    <img src="{% static 'main/images/home/alice-donovan.jpg' %}">
+                    <div class="pic-caption">Автор: Alice Donovan</div>
+                </div>
+                <div class="swiper-slide">
+                    <img src="{% static 'main/images/home/hao-wang.jpg' %}">
+                    <div class="pic-caption">Автор: Hao Wang</div>
+                </div>
+                <div class="swiper-slide">
+                    <img src="{% static 'main/images/home/sifan-liu.jpg' %}">
+                    <div class="pic-caption">Автор: Sifan Liu</div>
+                </div>
+                <div class="swiper-slide">
+                    <img src="{% static 'main/images/home/milad-fakurianh.jpg' %}">
+                    <div class="pic-caption">Автор: Milad Fakurianh</div>
+                </div>
+                <div class="swiper-slide">
+                    <img src="{% static 'main/images/home/steve-johnson.jpg' %}">
+                    <div class="pic-caption">Автор: Steve Johnson</div>
+                </div>
+                <div class="swiper-slide">
+                    <img src="{% static 'main/images/home/mymind.jpg' %}">
+                    <div class="pic-caption">Автор: MyMind</div>
+                </div>
+            </div>
+            <div class="swiper-pagination"></div>
+            <div class="swiper-button-next"></div>
+            <div class="swiper-button-prev"></div>
+        </div>
+        <h2 class="block__title">Присоединяйся к нам уже сейчас!</h2>
+    </div>
+
+
+{% endblock %}
