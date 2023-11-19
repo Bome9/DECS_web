@@ -1,0 +1,68 @@
+{% extends 'main/layout.html' %}
+{% load static %}
+
+
+{% block title %} Публикации {% endblock %}
+{% block content %}
+
+    <div class="container">
+        <div class="intro__wrapper__pub">
+            <div class="intro__block__pub">
+                <h1 class="intro__title__pub">Публикации</h1>
+                <p class="intro__text__pub">
+                    Здесь вы можете насладиться красивыми снимками, разделенными на
+                    различные тематические категории. Просто выберите интересующую вас
+                    категорию ниже и начните просмотр удивительных фотографий.
+                </p>
+            </div>
+        </div>
+    </div>
+
+
+    <div class="nav2">
+        <div class="container">
+            <div class="nav2__wrapper">
+                <div class="categories" id="categories-button">
+                    Категории
+                    <img class="arrow__icon" src="{% static 'main/images/publications/arrow.png' %}" alt="Профиль"/>
+                    <div class="dropdown__categories" id="categories-dropdown">
+                        <div class="triangle"></div>
+                        <a href="#">
+                            Архитектура
+                        </a>
+                        <a href="#">
+                            Пейзаж
+                        </a>
+                        <a href="#">
+                            Концерт
+                        </a>
+                        <a href="#">
+                            Мода
+                        </a>
+                        <a href="#">
+                            Портрет
+                        </a>
+                        <a href="#">
+                            Природа
+                        </a>
+                        <a href="#">
+                            Животные
+                        </a>
+                    </div>
+                </div>
+                <div class="nav2__wrapper selections">
+                    <a class="nav__link" href="#"> Новинки </a>
+                    <a class="nav__link" href="#"> Наш выбор </a>
+                    <a class="nav__link" href="#"> Популярное </a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="gallery">
+        <div class="container">
+            <div class="gallery__block" id="gallery"></div>
+        </div>
+    </div>
+
+{% endblock %}

@@ -1,0 +1,249 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700&display=swap');
+
+*,
+*:before,
+*:after {
+    box-sizing: border-box;
+}
+
+.container {
+    max-width: 1270px;
+    margin: 0 auto;
+}
+
+
+
+.header__menu {
+    margin-right: 20px;
+    display: flex;
+    gap: 20px;
+    align-items: center;
+}
+
+
+
+.nav__menu.profile {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 6px;
+    cursor: pointer;
+}
+
+.nav__menu.profile:hover {
+    color: #b5fbff
+}
+
+.nav__menu.profile img {
+    width: 25px;
+    height: 25px;
+}
+
+
+
+.profile {
+    position: relative;
+    display: inline-block;
+    cursor: pointer;
+}
+
+.triangle {
+    position: absolute;
+    border-left: 10px solid transparent;
+    border-right: 10px solid transparent;
+    border-bottom: 10px solid rgb(15, 168, 244);
+    top: -10px;
+    left: 50%;
+    transform: translateX(-50%);
+}
+
+.dropdown__profile {
+    display: none;
+    position: absolute;
+    background-color: #0fa4ff;
+    border-radius: 10px;
+    min-width: 180px;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+    z-index: 1;
+    top: 100%;
+    margin-top: 15px;
+    left: -20px;
+    opacity: 0;
+    transform: translateY(-10px);
+    transition: opacity 0.3s ease, transform 0.3s ease;
+}
+
+
+.dropdown__profile a {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    cursor: pointer;
+    padding: 10px 12px;
+    text-decoration: none;
+    color: #ffffff;
+    transition: color .2s ease;
+}
+
+
+.dropdown__profile a:hover,
+.dropdown__categories a:hover{
+    color: #b5fbff;
+}
+
+.nav__menu.upload {
+    display: flex;
+    justify-content: center;
+    border-radius: 45px;
+    border: 3px #b5fbff solid;
+    padding: 15px 40px;
+    align-items: center;
+    gap: 6px;
+}
+
+.nav__menu.upload img {
+    width: 23px;
+    height: 23px;
+}
+
+
+
+
+.intro__wrapper__pub {
+    display: flex;
+    justify-content: center;
+    margin: 80px 20px 80px 20px;
+    min-height: 102px;
+}
+
+.intro__block__pub {
+    max-width: 690px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.intro__title__pub {
+    display: flex;
+    justify-content: center;
+    margin-bottom: -10px;
+    font-size: 32px;
+    font-weight: 700;
+    line-height: 52px;
+}
+
+.intro__text__pub {
+    font-size: 16px;
+    font-weight: 400;
+    text-align: center;
+}
+
+
+
+.nav2__wrapper {
+    background-color: #3165d3;
+    margin: 0px 20px 0px 20px;
+    border-radius: 17px;
+    height: 90px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.categories {
+    font-size: 16px;
+    font-weight: 600;
+    margin-left: 20px;
+    display: flex;
+    justify-content: center;
+    border-radius: 45px;
+    padding: 14px;
+    width: 220px;
+    align-items: center;
+    gap: 6px;
+    background-color: #00A7EF;
+    cursor: pointer;
+    position: relative;
+}
+
+
+
+.dropdown__categories {
+    display: flex;
+    position: absolute;
+    background-color: #0fa4ff;
+    border-radius: 10px;
+    min-width: 160px;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+    z-index: 1;
+    top: 135%;
+    left: 2;
+    opacity: 0;
+    transform: translateY(-10px);
+    transition: opacity 0.3s ease, transform 0.3s ease;
+    align-items: center;
+}
+
+.dropdown__categories a {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    cursor: pointer;
+    padding: 10px 12px;
+    text-decoration: none;
+    color: #ffffff;
+    transition: color .2s ease;
+}
+
+
+
+.categories .arrow__icon {
+    height: 15px;
+    transition: transform 0.3s ease; /* Добавляем переход для свойства transform */
+}
+
+.categories.open .arrow__icon {
+    transform: rotate(180deg); /* Поворачиваем иконку на 180 градусов */
+}
+
+
+.selections {
+    gap: 60px;
+    margin-right: 406px;
+}
+
+
+
+.gallery{
+    margin: 50px 20px 50px 20px;
+
+}
+
+.gallery__block{
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(380px, 1fr));
+    grid-auto-rows: 240px;
+    grid-auto-flow: dense;
+    grid-gap: 15px;
+}
+
+.image{
+    background: var(--bg) center / cover;
+    border-radius: 10px;
+    box-shadow: inset 0 0 15px #000, 0 0px 0px #000;
+    transition: all 0.3s ease-in-out;
+}
+.image:hover {
+    box-shadow: inset 0 0 0 #000, 0 5px 10px #000;
+}
+.image:nth-child(5n){
+    grid-column: span 2;
+    grid-row: span 2;
+}
+.image:nth-child(2n){
+    grid-row: span 2;
+}
+
+
+
+

@@ -1,0 +1,107 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="ru">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>{% block title %}{% endblock %}</title>
+    <link rel="stylesheet" href=" {% static 'main/css/reset.css' %}">
+    <link rel="stylesheet" href=" {% static 'main/css/home.css' %}">
+    <link rel="stylesheet" href=" {% static 'main/css/publications_page_style.css' %}">
+    <link rel="stylesheet" href=" {% static 'main/css/settings_page.css' %}">
+    <link rel="stylesheet" href=" {% static 'main/css/profile_bio_page.css' %}">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@8/swiper-bundle.min.css"/>
+    <script src="https://cdn.jsdelivr.net/npm/swiper@8/swiper-bundle.min.js"></script>
+</head>
+
+<body>
+
+{% if request.user.is_authenticated %}
+    <header class="header">
+        <div class="container">
+            <div class="header__wrapper">
+                <a href="{% url 'home' %}" class="logo">DECS</a>
+                <nav class="nav">
+                    <a class="nav__link underline-animation" href="{% url 'home' %}"> Главная </a>
+                    <a class="nav__link underline-animation" href="{% url 'publications' %}"> Публикации </a>
+                    <a class="nav__link underline-animation" href="#"> Вдохновение </a>
+                </nav>
+
+                <div class="header__menu">
+                    <div class="nav__menu profile" id="profile-button">
+                        <img src="{% static 'main/images/publications/profile.png' %}" alt="Профиль"/>
+                        <span class="underline-animation">Профиль</span>
+                        <div class="dropdown__profile" id="profile-dropdown">
+                            <div class="triangle"></div>
+                            <a href="{% url 'profile_bio' %}">
+                                <img src="{% static 'main/images/publications/my_profile.png' %}" alt="Профиль"/>
+                                <span class="underline-animation">Мой профиль</span>
+                            </a>
+                            <a href="{% url 'settings' %}">
+                                <img src="{% static 'main/images/publications/skills.png' %}" alt="Профиль"/>
+                                <span class="underline-animation">Настройки</span>
+                            </a>
+                            <a href="#">
+                                <img src="{% static 'main/images/publications/gallery.png' %}" alt="Профиль"/>
+                                <span class="underline-animation">Галерея</span>
+                            </a>
+                            <a href="#">
+                                <img src="{% static 'main/images/publications/question.png' %}" alt="Профиль"/>
+                                <span class="underline-animation">Помощь</span>
+                            </a>
+                            <a href="{% url 'logout' %}">
+                                <img src="{% static 'main/images/publications/log-out.png' %}" alt="Профиль"/>
+                                <span class="underline-animation">Выйти</span>
+                            </a>
+                        </div>
+                    </div>
+
+                    <a class="nav__menu upload" href="#">
+                        <img src="{% static 'main/images/publications/upload_pic.png' %}" alt="Загрузка"/>
+                        Загрузить
+                    </a>
+                </div>
+            </div>
+        </div>
+    </header>
+
+{% else %}
+
+    <header class="header">
+        <div class="container">
+            <div class="header__wrapper">
+                <a href="{% url 'home' %}" class="logo">DECS</a>
+                <nav class="nav">
+                    <a class="nav__link underline-animation" href="{% url 'home' %}"> Главная </a>
+                    <a class="nav__link underline-animation" href="{% url 'publications' %}"> Публикации </a>
+                    <a class="nav__link underline-animation" href="#"> Вдохновение </a>
+                </nav>
+                <div class="auth">
+                    <a class='auth sign_in' href="{% url 'login' %}">
+                        Войти
+                    </a>
+                    <a class='auth sign_up' href="{% url 'register' %}">
+                        Зарегистрироваться
+                    </a>
+                </div>
+            </div>
+        </div>
+    </header>
+
+{% endif %}
+
+    {% block content %}
+    {% endblock %}
+
+    <footer>
+        <div class="footer__wrapper">
+            <a href="#" class="logo">DECS</a>
+        </div>
+    </footer>
+
+    <script src="{% static 'main/js/home/script.js' %}"></script>
+    <script src="{% static 'main/js/publications/script.js' %}"></script>
+</body>
+
+</html>

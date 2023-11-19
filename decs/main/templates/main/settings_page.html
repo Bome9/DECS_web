@@ -1,0 +1,62 @@
+{% extends 'main/layout.html' %}
+{% load static %}
+
+{% block title %} ArtFlow {% endblock %}
+{% block content %}
+
+    <div class="container">
+        <div class="settings">
+            <div class="settings__title">
+                <h1>Настройки</h1>
+            </div>
+
+            <form action="" method="POST" enctype="multipart/form-data">
+                {% csrf_token %}
+                <div class="settings__change__images">
+                    <div class="change__profile_img">
+                        <div class="profile_img">
+                            <img src="{{ user_profile.profileimg.url }}" alt="Фото профиля"/>
+                        </div>
+                        <div class="file_input__container" data-action="Изменить фото профиля">
+                            <input name="profile_img" type="file" class="file_input" accept="image/*"/>
+                        </div>
+                    </div>
+
+                    <div class="change__cover_img">
+                        <div class="cover_img">
+                            <img src="{{ user_profile.coverimg.url }}" alt="Фоновый рисунок"/>
+                        </div>
+                        <div class="file_input__container" data-action="Изменить фото обложки">
+                            <input name="cover_img" type="file" class="file_input" accept="image/*"/>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="profile_text_fields">
+                    <div class="settings__bio">
+                        <h3>О себе</h3>
+                        <textarea id="bio" name="bio" rows="3">{{ user_profile.bio }}</textarea>
+                    </div>
+                    <div class="settings__skills">
+                        <h3>Навыки</h3>
+                        <textarea id="skills" name="skills" >{{ user_profile.skills }}</textarea>
+                    </div>
+                    <div class="settings__achievements">
+                        <h3>Достижения</h3>
+                        <textarea id="achievements" name="achievements" >{{ user_profile.achievements }}</textarea>
+                    </div>
+                    <div class="settings__location">
+                        <h3>Местоположение</h3>
+                        <textarea id="location" name="location">{{ user_profile.location }}</textarea>
+                    </div>
+                </div>
+
+                <button type="submit" class='settings_save_btn'>
+                    Сохранить
+                </button>
+            </form>
+
+        </div>
+    </div>
+
+{% endblock %}
