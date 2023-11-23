@@ -128,7 +128,7 @@ body {
 }
 
 .intro__wrapper {
-    padding: 90px 0px 125px 0px;
+    padding: 90px 30px 125px 30px;
     min-height: 390px;
     display: flex;
     align-items: center;

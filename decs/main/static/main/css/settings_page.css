@@ -20,7 +20,7 @@
     height: 1460px;
     width: 1080px;
     border-radius: 85px;
-    border: 4px #FEB259 solid;
+    border: 4px #00A7EF solid;
 }
 
 .settings__title{
@@ -29,7 +29,7 @@
     font-size: 28px;
     font-weight: 900;
     word-wrap: break-word;
-    color: #333333;
+    color: #ffffff;
     margin-top: 70px;
 }
 
@@ -77,8 +77,8 @@
 .file_input__container::before{
     content: attr(data-action);
     display: inline-block;
-    background: rgba(251, 153, 39, 1);
-    color: #333333;
+    background: rgb(22, 190, 255);
+    color: #ffffff;
     font-weight: 900;
     padding: 8px 20px;
     border-radius: 6px;
@@ -86,7 +86,7 @@
 }
 
 .file_input__container:hover::before {
-    background: rgba(240, 87, 44, 0.8);
+    background: rgba(40, 197, 224, 0.84);
 }
 
 
@@ -118,10 +118,10 @@ textarea {
     height: 120px;
     padding: 10px;
     box-sizing: border-box;
-    border: 3px solid black;
+    border: 3px solid #ffffff;
     border-radius: 7px;
     background-color: transparent;
-    color: #333;
+    color: #ffffff;
     font-size: 18px;
     font-weight: 600;
     resize: none;
@@ -145,7 +145,7 @@ textarea {
     cursor: pointer;
     display: block;
     position: relative;
-    background-color: #F17105;
+    background-color: rgb(22, 190, 255);
     font-size: 16px;
     font-weight: 600;
     color: white;
@@ -156,7 +156,7 @@ textarea {
 }
 
 .settings_save_btn:hover {
-    background-color: rgba(240, 87, 44, 0.8);
+    background-color: rgba(40, 197, 224, 0.84);
 }
 
 .settings_save_btn:active {

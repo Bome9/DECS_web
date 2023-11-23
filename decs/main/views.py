@@ -21,9 +21,9 @@ def settings(request):
 
         if request.method == 'POST':
             if 'profile_img' in request.FILES:
-                user_profile.profileimg = request.FILES['profile_img']
+                user_profile.profile_img = request.FILES['profile_img']
             if 'cover_img' in request.FILES:
-                user_profile.coverimg = request.FILES['cover_img']
+                user_profile.cover_img = request.FILES['cover_img']
 
             user_profile.bio = request.POST['bio']
             user_profile.skills = request.POST['skills']
