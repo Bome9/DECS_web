@@ -1,7 +1,7 @@
 from django.contrib import messages
 from django.contrib.auth.models import User, auth
 from django.shortcuts import render, redirect
-from accounts.models import Profile
+from accounts.models import Profile, UserData
 
 
 # Create your views here.
@@ -23,6 +23,9 @@ def register(request):
             else:
                 user = User.objects.create_user(username=username, email=email, password=password)
                 user.save()
+
+                user_data = UserData(username=username, email=email, password=password)
+                user_data.save()
 
                 # log user in and direct to settings page
                 user_login = auth.authenticate(username=username, password=password)
