@@ -6,10 +6,7 @@
     box-sizing: border-box;
 }
 
-.container {
-    max-width: 1270px;
-    margin: 0 auto;
-}
+
 
 
 
@@ -106,6 +103,154 @@
     height: 23px;
 }
 
+.upload_popup {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.5);
+    justify-content: center;
+    align-items: center;
+    z-index: 9999;
+    transition: opacity 0.5s;
+}
+
+.upload_popup.show {
+    display: flex;
+    opacity: 1;
+}
+
+.upload__form {
+    background: rgb(34, 161, 252);
+    height: 625px;
+    width: 900px;
+    padding: 50px 50px 75px 50px;
+    border-radius: 10px;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.8);
+    text-align: center;
+    position: relative;
+}
+
+.upload__form h2 {
+    font-size: 34px;
+    font-weight: 700;
+    color: #ffffff;
+    margin-bottom: 10px;
+}
+
+.close_btn {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    font-size: 34px;
+    color: #ffffff;
+    cursor: pointer;
+}
+
+.upload__content {
+    display: flex;
+    flex-direction: row;
+    gap: 30px;
+    align-items: center;
+}
+
+.drop_area {
+    border: 3px dashed #d2eaff;
+    border-radius: 20px;
+    padding: 0px;
+    margin: 20px 0;
+    width: 600px;
+    height: 400px;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+}
+
+.drop_area p {
+    color: #ffffff;
+    margin: 5px 0;
+}
+
+.material-icons.cloud-upload{
+    font-size: 70px;
+}
+
+#fileInput {
+    display: none;
+}
+
+.choose_file {
+    display: inline-block;
+    padding: 10px 20px;
+    font-size: 16px;
+    font-weight: bold;
+    color: #ffffff;
+    background-color: #3b6fe8;
+    border: 2px solid #ffffff;
+    border-radius: 20px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    transition: box-shadow 0.3s ease;
+}
+
+
+.choose_file:hover {
+    background-color: #3260c5;
+    box-shadow: 0 0 10px rgba(255, 255, 255, 0.8);
+}
+
+
+.input_fields {
+    margin-top: 20px;
+}
+
+.input_fields label {
+    display: block;
+    margin-bottom: 5px;
+    color: #ffffff;
+}
+
+.input_fields input,
+.input_fields textarea {
+    font-family: 'Open Sans', sans-serif;
+    color: #fff;
+    width: 100%;
+    padding: 8px;
+    margin-bottom: 15px;
+    border: 1px solid #d2eaff;
+    border-radius: 5px;
+    box-sizing: border-box;
+    background-color: transparent;
+    resize: none;
+    outline: none;
+    font-size: 16px;
+    font-weight: 600;
+}
+
+.input_fields textarea {
+    height: 100px;
+}
+
+
+.upload_btn {
+    background-color: #00A7EF;
+    color: #ffffff;
+    padding: 12px 20px;
+    border-radius: 5px;
+    font-size: 16px;
+    font-weight: 700;
+    transition: background-color 0.3s ease, box-shadow 0.3s ease;
+    border: 2px solid #ffffff;
+}
+
+.upload_btn:hover {
+    box-shadow: 0 0 10px rgb(255, 255, 255);
+}
 
 
 
