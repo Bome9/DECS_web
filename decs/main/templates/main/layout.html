@@ -8,7 +8,7 @@
     <title>{% block title %}{% endblock %}</title>
     <link rel="stylesheet" href=" {% static 'main/css/reset.css' %}">
     <link rel="stylesheet" href=" {% static 'main/css/home.css' %}">
-    <link rel="stylesheet" href=" {% static 'main/css/publications_page_style.css' %}">
+    <link rel="stylesheet" href=" {% static 'main/css/inspiration_page_style.css' %}">
     <link rel="stylesheet" href=" {% static 'main/css/settings_page.css' %}">
     <link rel="stylesheet" href=" {% static 'main/css/profile_bio_page.css' %}">
     <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons" />
@@ -25,41 +25,41 @@
                 <a href="{% url 'home' %}" class="logo">DECS</a>
                 <nav class="nav">
                     <a class="nav__link underline-animation" href="{% url 'home' %}"> Главная </a>
-                    <a class="nav__link underline-animation" href="{% url 'publications' %}"> Публикации </a>
-                    <a class="nav__link underline-animation" href="#"> Вдохновение </a>
+                    <a class="nav__link underline-animation" href="#"> Публикации </a>
+                    <a class="nav__link underline-animation" href="{% url 'inspiration' %}"> Вдохновение </a>
                 </nav>
 
                 <div class="header__menu">
                     <div class="nav__menu profile" id="profile-button">
-                        <img src="{% static 'main/images/publications/profile.png' %}" alt="Профиль"/>
+                        <img src="{% static 'main/images/inspiration/profile.png' %}" alt="Профиль"/>
                         <span class="underline-animation">Профиль</span>
                         <div class="dropdown__profile" id="profile-dropdown">
                             <div class="triangle"></div>
                             <a href="{% url 'profile_bio' %}">
-                                <img src="{% static 'main/images/publications/my_profile.png' %}" alt="Профиль"/>
+                                <img src="{% static 'main/images/inspiration/my_profile.png' %}" alt="Профиль"/>
                                 <span class="underline-animation">Мой профиль</span>
                             </a>
                             <a href="{% url 'settings' %}">
-                                <img src="{% static 'main/images/publications/skills.png' %}" alt="Профиль"/>
+                                <img src="{% static 'main/images/inspiration/skills.png' %}" alt="Профиль"/>
                                 <span class="underline-animation">Настройки</span>
                             </a>
                             <a href="#">
-                                <img src="{% static 'main/images/publications/gallery.png' %}" alt="Профиль"/>
+                                <img src="{% static 'main/images/inspiration/gallery.png' %}" alt="Профиль"/>
                                 <span class="underline-animation">Галерея</span>
                             </a>
                             <a href="#">
-                                <img src="{% static 'main/images/publications/question.png' %}" alt="Профиль"/>
+                                <img src="{% static 'main/images/inspiration/question.png' %}" alt="Профиль"/>
                                 <span class="underline-animation">Помощь</span>
                             </a>
                             <a href="{% url 'logout' %}">
-                                <img src="{% static 'main/images/publications/log-out.png' %}" alt="Профиль"/>
+                                <img src="{% static 'main/images/inspiration/log-out.png' %}" alt="Профиль"/>
                                 <span class="underline-animation">Выйти</span>
                             </a>
                         </div>
                     </div>
 
                     <a class="nav__menu upload" href="#" id="uploadBtn">
-                        <img src="{% static 'main/images/publications/upload_pic.png' %}" alt="Загрузка"/>
+                        <img src="{% static 'main/images/inspiration/upload_pic.png' %}" alt="Загрузка"/>
                         Загрузить
                     </a>
                 </div>
@@ -98,8 +98,8 @@
                 <a href="{% url 'home' %}" class="logo">DECS</a>
                 <nav class="nav">
                     <a class="nav__link underline-animation" href="{% url 'home' %}"> Главная </a>
-                    <a class="nav__link underline-animation" href="{% url 'publications' %}"> Публикации </a>
-                    <a class="nav__link underline-animation" href="#"> Вдохновение </a>
+                    <a class="nav__link underline-animation" href="#"> Публикации </a>
+                    <a class="nav__link underline-animation" href="{% url 'inspiration' %}"> Вдохновение </a>
                 </nav>
                 <div class="auth">
                     <a class='auth sign_in' href="{% url 'login' %}">
@@ -125,7 +125,7 @@
 </footer>
 
 <script src="{% static 'main/js/home/home_script.js' %}"></script>
-<script src="{% static 'main/js/publications/publications_script.js' %}"></script>
+<script src="{% static 'main/js/inspiration/inspiration_script.js' %}"></script>
 </body>
 
 </html>

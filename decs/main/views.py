@@ -10,8 +10,8 @@ def main(request):
     return render(request, 'main/home.html')
 
 
-def publications(request):
-    return render(request, 'main/publications_page.html')
+def inspiration(request):
+    return render(request, 'main/inspiration_page.html')
 
 
 def settings(request):
