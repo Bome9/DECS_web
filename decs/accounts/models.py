@@ -4,11 +4,18 @@ from django.contrib.auth import get_user_model
 User = get_user_model()
 
 
-# Create your models here.
+class UserData(models.Model):
+    user = models.OneToOneField(User, on_delete=models.CASCADE)
+    username = models.CharField(max_length=255, unique=True)
+    email = models.EmailField(unique=True)
+    password = models.CharField(max_length=255)
+
+    def __str__(self):
+        return self.username
+
 
 class Profile(models.Model):
-    user = models.ForeignKey(User, on_delete=models.CASCADE)
-    id_user = models.IntegerField()
+    user = models.OneToOneField(User, on_delete=models.CASCADE)
     profile_img = models.ImageField(upload_to='profile_images', default='blank-profile-picture.png')
     cover_img = models.ImageField(upload_to='cover_images', default='cover_default.png')
     bio = models.TextField(blank=True)
@@ -18,12 +25,3 @@ class Profile(models.Model):
 
     def __str__(self):
         return self.user.username
-
-
-class UserData(models.Model):
-    username = models.CharField(max_length=255, unique=True)
-    email = models.EmailField(unique=True)
-    password = models.CharField(max_length=255)
-
-    def __str__(self):
-        return self.username
