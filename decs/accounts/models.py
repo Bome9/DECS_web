@@ -14,16 +14,6 @@ class UserData(models.Model):
         return self.username
 
 
-class UserData(models.Model):
-    user = models.OneToOneField(User, on_delete=models.CASCADE)
-    username = models.CharField(max_length=255, unique=True)
-    email = models.EmailField(unique=True)
-    password = models.CharField(max_length=255)
-
-    def __str__(self):
-        return self.username
-
-
 class Profile(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE)
     profile_img = models.ImageField(upload_to='profile_images', default='blank-profile-picture.png')
