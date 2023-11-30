@@ -21,18 +21,12 @@ def register(request):
                 messages.info(request, 'Такой логин уже занят')
                 return redirect('register')
             else:
-                # Create user
                 user = User.objects.create_user(username=username, email=email, password=password)
-
-                # Create UserData for the new user
                 user_data = UserData.objects.create(user=user, username=username, email=email, password=password)
-                # Добавьте необходимые данные в объект UserData, если это необходимо
 
-                # Create Profile for the new user
                 new_profile = Profile.objects.create(user=user)
                 new_profile.save()
 
-                # log user in and direct to settings page
                 user_login = auth.authenticate(username=username, password=password)
                 auth.login(request, user_login)
 

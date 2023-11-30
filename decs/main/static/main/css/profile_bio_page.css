@@ -21,7 +21,7 @@
 }
 
 .profile__cover{
-    margin-top: 20px;
+    margin-top: 91px;
     width: 1263px;
     height: 600px;
     object-fit: cover;
@@ -29,7 +29,7 @@
 }
 
 .cover::before {
-    margin-top: 20px;
+    margin-top: 91px;
     content: "";
     position: absolute;
     top: 0;
@@ -54,7 +54,7 @@
     align-items: center;
     width: 1200px;
     position: absolute;
-    bottom: 0;
+    bottom: -80px;
     padding: 40px;
     color: #ffffff;
 }
@@ -85,7 +85,7 @@
 }
 
 .user_bar__nav{
-    margin-top: 50px;
+    margin-top: 150px;
     display: flex;
     gap: 25px;
     font-weight: 900;
