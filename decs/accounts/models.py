@@ -16,12 +16,20 @@ class UserData(models.Model):
 
 class Profile(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE)
-    profile_img = models.ImageField(upload_to='profile_images', default='blank-profile-picture.png')
-    cover_img = models.ImageField(upload_to='cover_images', default='cover_default.png')
     bio = models.TextField(blank=True)
     skills = models.TextField(blank=True)
     achievements = models.TextField(blank=True)
     location = models.CharField(max_length=100, blank=True)
+
+    def profile_image_path(instance, filename):
+        return f'profile_images/{instance.user.username}/{filename}'
+
+    profile_img = models.ImageField(upload_to=profile_image_path)
+
+    def cover_image_path(instance, filename):
+        return f'cover_images/{instance.user.username}/{filename}'
+
+    cover_img = models.ImageField(upload_to=cover_image_path)
 
     def __str__(self):
         return self.user.username

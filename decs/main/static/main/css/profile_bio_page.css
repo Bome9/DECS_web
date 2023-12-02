@@ -111,7 +111,7 @@
 
 .profile__bio__info{
     margin: 60px 0px 0px 70px;
-    display: flex;
+    display: none;
     flex-direction: column;
     gap: 40px
 }
@@ -126,4 +126,8 @@
     color: #ffffff;
     font-size: 24px;
     font-weight: 900;
+}
+
+.profile__bio__info:target{
+    display: flex;
 }

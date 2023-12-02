@@ -1,6 +1,9 @@
+from django.http import HttpResponse
 from django.shortcuts import render, redirect
 
-from accounts.models import Profile
+from django.contrib.auth.models import User, auth
+from accounts.models import Profile, UserData
+from main.models import Post
 
 
 # Create your views here.
@@ -12,6 +15,33 @@ def main(request):
 
 def inspiration(request):
     return render(request, 'main/inspiration_page.html')
+
+
+def upload(request):
+
+    if request.method == 'POST':
+        print(request.FILES)
+        print(request.POST)
+
+        # user = request.user.username
+        post_img = request.FILES.get('image_upload')
+        title = request.POST['post_title']
+        description = request.POST['post_description']
+
+        if title and post_img:
+            new_post = Post.objects.create(user=request.user, post_img=post_img, title=title, description=description)
+            new_post.save()
+
+        return redirect('/')
+    else:
+        return redirect('/')
+
+
+def publications(request):
+    user_profile = Profile.objects.get(user=request.user)
+
+    posts = Post.objects.all()
+    return render(request, 'main/publications_page.html', {'user_profile': user_profile, 'posts': posts})
 
 
 def settings(request):

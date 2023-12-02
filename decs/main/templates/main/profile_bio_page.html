@@ -5,45 +5,49 @@
 {% block title %} Публикации {% endblock %}
 {% block content %}
 
-<div class="container">
-    <div class="profile__bio">
-        <div class="cover">
-            <img class="profile__cover" src="{{ user_profile.cover_img.url }}" alt="Обложка"/>
-            <div class="profile__info">
-                <img class="profile__picture" src="{{ user_profile.profile_img.url }}" alt="Фото профиля"/>
-                <div class="name_and_bio">
-                    <div class="name">{{ user.username }}</div>
-                    <div class="biography">Ура! Я пользуюсь DECS.</div>
+    <div class="container">
+        <div class="profile__bio">
+            <div class="cover">
+                <img class="profile__cover" src="{{ user_profile.cover_img.url }}" alt="Обложка"/>
+                <div class="profile__info">
+                    <img class="profile__picture" src="{{ user_profile.profile_img.url }}" alt="Фото профиля"/>
+                    <div class="name_and_bio">
+                        <div class="name">{{ user.username }}</div>
+                        <div class="biography">Ура! Я пользуюсь DECS.</div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="user_bar">
+                <div class="user_bar__nav">
+                    <a href="#tab_01" class="underline-animation"> Портфолио</a>
+                    <a href="#tab_02" class="underline-animation">Биография</a>
+                </div>
+            </div>
+
+            <div id="tab_01" class="profile__bio__info">
+                <h1>LFLFLFLFL</h1>
+            </div>
+
+            <div id="tab_02" class="profile__bio__info">
+                <div class="profile__bio__info__block">
+                    <h3>О себе</h3>
+                    <p>{{ user_profile.bio }}</p>
+                </div>
+                <div class="profile__bio__info__block">
+                    <h3>Навыки</h3>
+                    <p>{{ user_profile.skills }}</p>
+                </div>
+                <div class="profile__bio__info__block">
+                    <h3>Достижения</h3>
+                    <p>{{ user_profile.achievements }}</p>
+                </div>
+                <div class="profile__bio__info__block">
+                    <h3>Местоположение</h3>
+                    <p>{{ user_profile.location }}</p>
                 </div>
             </div>
         </div>
-
-        <div class="user_bar">
-            <div class="user_bar__nav">
-                <h1 class="underline-animation"> Портфолио</h1>
-                <h1 class="underline-animation">Биография</h1>
-            </div>
-        </div>
-
-        <div class="profile__bio__info">
-            <div class="profile__bio__info__block">
-                <h3>О себе</h3>
-                <p>{{ user_profile.bio }}</p>
-            </div>
-            <div class="profile__bio__info__block">
-                <h3>Навыки</h3>
-                <p>{{ user_profile.skills }}</p>
-            </div>
-            <div class="profile__bio__info__block">
-                <h3>Достижения</h3>
-                <p>{{ user_profile.achievements }}</p>
-            </div>
-            <div class="profile__bio__info__block">
-                <h3>Местоположение</h3>
-                <p>{{ user_profile.location }}</p>
-            </div>
-        </div>
     </div>
-</div>
 
 {% endblock %}

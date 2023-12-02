@@ -1,0 +1,51 @@
+{% extends 'main/layout.html' %}
+{% load static %}
+
+
+{% block title %} Публикации {% endblock %}
+{% block content %}
+
+    <div class="container">
+        <div class="intro__wrapper__pub">
+            <div class="intro__block__pub">
+                <h1 class="intro__title__pub">Публикации</h1>
+                <p class="intro__text__pub">
+                    Здесь вы найдете неповторимые произведения искусства, созданные талантливыми дизайнерами и
+                    художниками со всего мира. Погружайтесь в мир уникальных концепций, открывайте для себя новые
+                    тенденции и наслаждайтесь великолепием визуального восприятия.
+                </p>
+            </div>
+        </div>
+    </div>
+    {% for post in posts reversed %}
+    <div class="publication">
+        <div class="publication__wrapper">
+            <div class="publication__header">
+                <div class="user_info">
+                    <div class="user_info__img">
+                         <img class="profile__picture" src="{{ post.user_profile_img }}" alt="Фото профиля"/>
+                    </div>
+                    <div class="user_info__name">{{ post.user }}</div>
+                </div>
+                <!-- <img class="user_info__img" src="images/more.png" alt=""> -->
+            </div>
+
+            <div class="publication-img">
+                <div class="img-overlay">
+                    <img id="downloadImg" src="{{ post.post_img.url }}" alt="">
+                    <div class="image-text">
+                        <h3>{{ post.title }}</h3>
+                        <p>{{ post.description }}</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="publication__footer">
+                <img class="downloadBtn" src="{% static 'main/images/publications/download.png' %}" alt="">
+            </div>
+        </div>
+    </div>
+    {% endfor %}
+
+
+{% endblock %}

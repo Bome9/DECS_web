@@ -9,6 +9,7 @@
     <link rel="stylesheet" href=" {% static 'main/css/reset.css' %}">
     <link rel="stylesheet" href=" {% static 'main/css/home.css' %}">
     <link rel="stylesheet" href=" {% static 'main/css/inspiration_page_style.css' %}">
+    <link rel="stylesheet" href=" {% static 'main/css/publications_page_style.css' %}">
     <link rel="stylesheet" href=" {% static 'main/css/settings_page.css' %}">
     <link rel="stylesheet" href=" {% static 'main/css/profile_bio_page.css' %}">
     <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons" />
@@ -25,7 +26,7 @@
                 <a href="{% url 'home' %}" class="logo">DECS</a>
                 <nav class="nav">
                     <a class="nav__link underline-animation" href="{% url 'home' %}"> Главная </a>
-                    <a class="nav__link underline-animation" href="#"> Публикации </a>
+                    <a class="nav__link underline-animation" href="{% url 'publications' %}"> Публикации </a>
                     <a class="nav__link underline-animation" href="{% url 'inspiration' %}"> Вдохновение </a>
                 </nav>
 
@@ -71,22 +72,25 @@
         <div class="upload__form">
             <span class="close_btn" id="closeBtn">&times;</span>
             <h2>Загрузка работы</h2>
-            <div class="upload__content">
-                <div id="dropArea" class="drop_area">
-                    <span class="material-icons cloud-upload">cloud_upload</span>
-                    <p>Перетащите картинку сюда</p>
-                    <p>или</p>
-                    <input type="file" id="fileInput"/>
-                    <label for="fileInput" class="choose_file">Выберите файл</label>
+            <form action="/upload/" method="POST" enctype="multipart/form-data">
+                {% csrf_token %}
+                <div class="upload__content">
+                    <div id="dropArea" class="drop_area">
+                        <span class="material-icons cloud-upload">cloud_upload</span>
+                        <p>Поделитесь своим творчеством</p>
+                        <p>и</p>
+                        <input type="file" id="fileInput" name="image_upload" />
+                        <label for="fileInput" class="choose_file">Выберите файл</label>
+                    </div>
+                    <div class="input_fields">
+                        <label for="post_title">Название:</label>
+                        <input type="text" id="post_title" name="post_title"/>
+                        <label for="post_description">Описание:</label>
+                        <textarea id="post_description" name="post_description" rows="4"></textarea>
+                    </div>
                 </div>
-                <div class="input_fields">
-                    <label for="photoTitle">Название:</label>
-                    <input type="text" id="photoTitle" name="photoTitle"/>
-                    <label for="photoDescription">Описание:</label>
-                    <textarea id="photoDescription" name="photoDescription" rows="4"></textarea>
-                </div>
-            </div>
-            <button class="upload_btn" id="uploadBtn">Загрузить</button>
+                <button class="upload_btn" id="uploadBtn" type="submit">Загрузить</button>
+            </form>
         </div>
     </div>
 
@@ -126,6 +130,8 @@
 
 <script src="{% static 'main/js/home/home_script.js' %}"></script>
 <script src="{% static 'main/js/inspiration/inspiration_script.js' %}"></script>
+<script src="{% static 'main/js/profile/profile_script.js' %}"></script>
+<script src="{% static 'main/js/publications/publications_script.js' %}" defer></script>
 </body>
 
 </html>
