@@ -13,7 +13,7 @@
                     <img class="profile__picture" src="{{ user_profile.profile_img.url }}" alt="Фото профиля"/>
                     <div class="name_and_bio">
                         <div class="name">{{ user.username }}</div>
-                        <div class="biography">Ура! Я пользуюсь DECS.</div>
+{#                        <div class="biography">Ура! Я пользуюсь DECS.</div>#}
                     </div>
                 </div>
             </div>
@@ -37,7 +37,7 @@
                                     </div>
                                     <div class="user_info__name">{{ post.user }}</div>
                                 </div>
-                                <!-- <img class="user_info__img" src="images/more.png" alt=""> -->
+                                <img class="user_info__img" src="{% static 'main/images/profile/close.png' %}" alt="">
                             </div>
 
                             <div class="publication-img">

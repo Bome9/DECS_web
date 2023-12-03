@@ -1,23 +1,29 @@
-@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Montagu+Slab:opsz,wght@16..144,600&family=Open+Sans:wght@400;600;700;800&display=swap');
 *{
     margin: 0;
     padding: 0;
-    font-family: 'Montserrat', sans-serif;
+    font-family: 'Open Sans', sans-serif;
 }
 
+
+a {
+    text-decoration: none;
+    color: #ffffff;
+}
 
 .logo{
     position: relative;
     bottom: 85px;
     margin-top: 100px;
-}
-.logo img{
-    height: 35px;
-    transition: transform 0.3s;
+    color: white;
+    font-size: 44px;
+    font-family: 'Montagu Slab', sans-serif;
+    font-weight: 600;
+    transition: text-shadow 0.3s ease;
 }
 
-.logo img:hover {
-  transform: scale(1.1);
+.logo:hover {
+    text-shadow: 0 0 50px rgba(255, 255, 255, 0.939);
 }
 
 section{
