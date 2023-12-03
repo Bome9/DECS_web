@@ -68,5 +68,7 @@ def settings(request):
 
 def profile_bio(request):
     user_profile = Profile.objects.get(user=request.user)
-    return render(request, 'main/profile_bio_page.html', {'user_profile': user_profile})
+
+    posts = Post.objects.filter(user=request.user)
+    return render(request, 'main/profile_bio_page.html', {'user_profile': user_profile, 'posts': posts})
 

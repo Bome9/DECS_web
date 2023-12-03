@@ -7,10 +7,7 @@
 }
 
 
-
-
-.profile__bio{
-    height: 1448px;
+.profile__bio {
     width: 100%;
 }
 
@@ -20,7 +17,7 @@
     position: relative;
 }
 
-.profile__cover{
+.profile__cover {
     margin-top: 91px;
     width: 1263px;
     height: 600px;
@@ -38,7 +35,7 @@
     height: 100%;
     background: rgba(0, 0, 0, 0.3);
     border-radius: 25px;
-  }
+}
 
 
 .profile__picture {
@@ -59,7 +56,7 @@
     color: #ffffff;
 }
 
-.name_and_bio{
+.name_and_bio {
     display: flex;
     flex-direction: column;
     gap: 8px;
@@ -79,12 +76,12 @@
 }
 
 
-.user_bar{
+.user_bar {
     display: flex;
     justify-content: center;
 }
 
-.user_bar__nav{
+.user_bar__nav {
     margin-top: 150px;
     display: flex;
     gap: 25px;
@@ -93,7 +90,7 @@
     color: #ffffff;
 }
 
-.user_bar__nav h1{
+.user_bar__nav h1 {
     position: relative;
     cursor: pointer;
 }
@@ -108,26 +105,49 @@
     bottom: -5px;
 }
 
-
-.profile__bio__info{
-    margin: 60px 0px 0px 70px;
+.profile__bio__info {
+    margin: 60px 0px 0px 0px;
     display: none;
     flex-direction: column;
     gap: 40px
 }
 
-.profile__bio__info__block{
+.profile__bio__info__block {
     display: flex;
     flex-direction: column;
     gap: 20px;
 }
 
-.profile__bio__info__block h3{
+.profile__bio__info__block h3 {
     color: #ffffff;
     font-size: 24px;
     font-weight: 900;
 }
 
-.profile__bio__info:target{
+.profile__bio__info.active {
+    overflow: hidden;
     display: flex;
 }
+
+
+.portfolio {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-evenly;
+}
+
+.gallery-item {
+    flex: 0 0 23%;
+    margin: 1%;
+}
+
+.gallery-item img {
+    width: 100%;
+    height: auto;
+    display: block;
+}
+
+
+/*.profile__bio__info:target{*/
+/*    display: flex;*/
+/*}*/

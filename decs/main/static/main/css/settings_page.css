@@ -7,6 +7,10 @@
 }
 
 .settings{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
     margin-top: 150px;
     margin-left: 95px;
     margin-bottom: 150px;
@@ -23,7 +27,6 @@
     font-weight: 900;
     word-wrap: break-word;
     color: #ffffff;
-    margin-top: 70px;
 }
 
 .settings__change__images{
@@ -39,9 +42,17 @@
     border-radius: 50%;
 }
 
-.cover_img img{
+.cover_img{
+    display: flex;
+    align-items: center;
+    justify-content: center;
     width: 350px;
     height: 150px;
+}
+
+.cover_img img{
+    max-width: 350px;
+    max-height: 150px;
     border-radius: 10px;
 }
 
