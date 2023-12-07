@@ -1,12 +1,7 @@
-from django.http import HttpResponse
-from django.shortcuts import render, redirect
-
+from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib.auth.models import User, auth
 from accounts.models import Profile, UserData
 from main.models import Post
-
-
-# Create your views here.
 
 
 def main(request):
@@ -32,9 +27,9 @@ def upload(request):
             new_post = Post.objects.create(user=request.user, post_img=post_img, title=title, description=description)
             new_post.save()
 
-        return redirect('/')
+        return redirect('publications')
     else:
-        return redirect('/')
+        return redirect('publications')
 
 
 def publications(request):
@@ -71,4 +66,15 @@ def profile_bio(request):
 
     posts = Post.objects.filter(user=request.user)
     return render(request, 'main/profile_bio_page.html', {'user_profile': user_profile, 'posts': posts})
+
+
+def delete_post(request, post_id):
+    post = get_object_or_404(Post, id=post_id, user=request.user)
+
+    # Проверяем, что текущий пользователь является автором поста
+    if post.user == request.user:
+        post.delete()
+
+    return redirect('profile_bio')
+
 

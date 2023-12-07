@@ -8,4 +8,5 @@ urlpatterns = [
     path('publications/', views.publications, name='publications'),
     path('settings/', views.settings, name='settings'),
     path('profile_bio/', views.profile_bio, name='profile_bio'),
+    path('delete_post/<uuid:post_id>/', views.delete_post, name='delete_post'),
 ]
