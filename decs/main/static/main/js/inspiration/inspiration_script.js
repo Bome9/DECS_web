@@ -1,10 +1,10 @@
 const gallery = document.getElementById('gallery');
-const accessKey = '6wQO4Y0Vab7FB1Xpt31oaJHs3mH5h9itprBc8FKQS5w';
+const accessKey = 'rp7OeT-mm-IpBTCIvjY9OKbqkka3fh11e50iRKfIv5M';
 let page = 1; // Номер страницы для загрузки новых фотографий
 
 // Функция для загрузки фотографий из Unsplash API
 const loadPhotos = () => {
-  fetch(`https://api.unsplash.com/photos/random?count=24&query=Moscow&client_id=${accessKey}&page=${page}`)
+  fetch(`https://api.unsplash.com/photos/random?count=24&query=Art_Design&client_id=${accessKey}&page=${page}`)
     .then((response) => response.json())
     .then((data) => {
       data.forEach((photo) => {

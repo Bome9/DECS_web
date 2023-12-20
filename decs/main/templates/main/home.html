@@ -2,7 +2,7 @@
 {% load static %}
 
 
-{% block title %} ArtFlow {% endblock %}
+{% block title %} Главная {% endblock %}
 {% block content %}
 
     <div class="intro">
@@ -11,7 +11,7 @@
                 <div class="intro__block">
                     <h1 class="intro__title">Design Explore Create... SHOW!</h1>
                     <p class="intro__text">Откройте для себя бескрайний поток творческих возможностей. Исследуйте новые идеи, воплощайте их в жизнь и, наконец, выходите на сцену — DECS! Здесь ваше творчество становится источником вдохновения. Добро пожаловать в мир дизайна, где каждый момент — шаг к уникальному выражению вашего таланта!</p>
-                    <a class='watch_btn' href="#">Смотреть</a>
+                    <a class='watch_btn' href="{% url 'inspiration' %}">Смотреть</a>
                 </div>
                 <div class="intro__pic">
                     <img src="{% static 'main/images/home/milad-fakurian.png' %}" alt="caw">

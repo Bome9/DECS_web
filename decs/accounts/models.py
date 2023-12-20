@@ -24,12 +24,12 @@ class Profile(models.Model):
     def profile_image_path(instance, filename):
         return f'profile_images/{instance.user.username}/{filename}'
 
-    profile_img = models.ImageField(upload_to=profile_image_path)
+    profile_img = models.ImageField(upload_to=profile_image_path, default='default/profile_default.png')
 
     def cover_image_path(instance, filename):
         return f'cover_images/{instance.user.username}/{filename}'
 
-    cover_img = models.ImageField(upload_to=cover_image_path)
+    cover_img = models.ImageField(upload_to=cover_image_path, default='default/cover_default.png')
 
     def __str__(self):
         return self.user.username
