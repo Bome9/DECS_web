@@ -35,7 +35,6 @@ window.addEventListener('scroll', () => {
   }
 });
 
-// Начальная загрузка фотографий при загрузке страницы
 loadPhotos();
 
 
@@ -99,13 +98,13 @@ profileButton.addEventListener('click', function (event) {
         profileDropdown.style.transform = 'translateY(-10px)';
         setTimeout(function () {
             profileDropdown.style.display = 'none';
-        }, 300); // 300 миллисекунд - это время анимации (зависит от CSS-анимации)
+        }, 300);
     } else {
         profileDropdown.style.display = 'block';
         setTimeout(function () {
             profileDropdown.style.opacity = '1';
             profileDropdown.style.transform = 'translateY(0)';
-        }, 0); // Запускаем анимацию после небольшой задержки (0 миллисекунд), чтобы она применилась
+        }, 0);
     }
 
     // Остановите распространение события, чтобы оно не достигло документа и не закрыло меню сразу после открытия
