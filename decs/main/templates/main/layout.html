@@ -12,7 +12,7 @@
     <link rel="stylesheet" href=" {% static 'main/css/inspiration_page_style.css' %}">
     <link rel="stylesheet" href=" {% static 'main/css/publications_page_style.css' %}">
     <link rel="stylesheet" href=" {% static 'main/css/settings_page.css' %}">
-    <link rel="stylesheet" href=" {% static 'main/css/profile_bio_page.css' %}">
+    <link rel="stylesheet" href=" {% static 'main/css/profile_page.css' %}">
     <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons" />
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@8/swiper-bundle.min.css"/>
     <script src="https://cdn.jsdelivr.net/npm/swiper@8/swiper-bundle.min.js"></script>
@@ -37,7 +37,7 @@
                         <span class="underline-animation">Профиль</span>
                         <div class="dropdown__profile" id="profile-dropdown">
                             <div class="triangle"></div>
-                            <a href="{% url 'profile_bio' %}">
+                            <a href="{% url 'profile' pk=request.user.username%}">
                                 <img src="{% static 'main/images/inspiration/my_profile.png' %}" alt="Профиль"/>
                                 <span class="underline-animation">Мой профиль</span>
                             </a>
@@ -103,7 +103,7 @@
                 <a href="{% url 'home' %}" class="logo">DECS</a>
                 <nav class="nav">
                     <a class="nav__link underline-animation" href="{% url 'home' %}"> Главная </a>
-                    <a class="nav__link underline-animation" href="#"> Публикации </a>
+                    <a class="nav__link underline-animation" href="{% url 'publications' %}"> Публикации </a>
                     <a class="nav__link underline-animation" href="{% url 'inspiration' %}"> Вдохновение </a>
                 </nav>
                 <div class="auth">

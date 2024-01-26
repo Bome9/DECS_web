@@ -14,6 +14,7 @@ class Post(models.Model):
     title = models.CharField(max_length=25)
     description = models.CharField(max_length=70, blank=True)
     date = models.DateTimeField(default=datetime.now)
+    num_of_likes = models.IntegerField(default=0)
 
     def user_profile_img(self):
         # Получаем профиль пользователя
@@ -29,3 +30,11 @@ class Post(models.Model):
 
     def __str__(self):
         return self.user.username
+
+
+class LikePost(models.Model):
+    post_id = models.CharField(max_length=500)
+    username = models.CharField(max_length=255)
+
+    def __str__(self):
+        return self.username

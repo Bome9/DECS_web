@@ -212,9 +212,9 @@
     align-items: center;
     gap: 20px;
     position: absolute;
-    bottom: 15px; /* Изменено на отступ внизу */
+    bottom: 15px;
     left: 50%;
-    transform: translateX(-50%); /* Изменено для выравнивания по центру горизонтально */
+    transform: translateX(-50%);
     opacity: 0;
     transition: opacity 0.3s ease;
     background-color: rgba(46, 151, 236, 0.828);
@@ -231,6 +231,7 @@
 
 
 .publication__footer {
+    gap: 300px;
     padding: 20px 0px 20px 0px;
     display: flex;
     width: 100%;
@@ -245,6 +246,16 @@
     width: 30px;
 }
 
+.likes{
+    display: flex;
+    gap: 20px;
+    align-items: center;
+    justify-content: center;
+}
+
+.likes p{
+    font-size: 18px;
+}
 
 .downloadBtn {
     cursor: pointer;

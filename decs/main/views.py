@@ -1,7 +1,8 @@
 from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib.auth.models import User, auth
 from accounts.models import Profile, UserData
-from main.models import Post
+from main.models import Post, LikePost
+from django.contrib.auth.decorators import login_required
 
 
 def main(request):
@@ -12,11 +13,31 @@ def inspiration(request):
     return render(request, 'main/inspiration_page.html')
 
 
-def upload(request):
+@login_required(login_url='login')
+def like_post(request):
+    username = request.user.username
+    post_id = request.GET.get('post_id')
 
+    post = Post.objects.get(id=post_id)
+
+    like_filter = LikePost.objects.filter(post_id=post_id, username=username).first()
+
+    if like_filter is None:
+        new_like = LikePost.objects.create(post_id=post_id, username=username)
+        new_like.save()
+        post.num_of_likes = post.num_of_likes + 1
+        post.save()
+        return redirect('/publications')
+    else:
+        like_filter.delete()
+        post.num_of_likes = post.num_of_likes - 1
+        post.save()
+        return redirect('/publications')
+
+
+@login_required(login_url='login')
+def upload(request):
     if request.method == 'POST':
-        print(request.FILES)
-        print(request.POST)
 
         # user = request.user.username
         post_img = request.FILES.get('image_upload')
@@ -32,13 +53,14 @@ def upload(request):
         return redirect('publications')
 
 
+@login_required(login_url='login')
 def publications(request):
     user_profile = Profile.objects.get(user=request.user)
-
     posts = Post.objects.all()
     return render(request, 'main/publications_page.html', {'user_profile': user_profile, 'posts': posts})
 
 
+@login_required(login_url='login')
 def settings(request):
     user_profile = Profile.objects.get(user=request.user)
 
@@ -61,16 +83,30 @@ def settings(request):
     return render(request, 'main/settings_page.html', {'user_profile': user_profile})
 
 
-def profile_bio(request):
-    user_profile = Profile.objects.get(user=request.user)
-    posts = Post.objects.filter(user=request.user)
-    return render(request, 'main/profile_bio_page.html', {'user_profile': user_profile, 'posts': posts})
+@login_required(login_url='login')
+def profile(request, pk):
+    user_object = get_object_or_404(User, username=pk)
+    user_profile = Profile.objects.get(user=user_object)
+    posts = Post.objects.filter(user=user_object.pk)
+    likes = LikePost.objects.filter(username=user_object.username)
+    post_length = len(posts)
+    like_length = len(likes)
+
+    context = {
+        'user_object': user_object,
+        'user_profile': user_profile,
+        'posts': posts,
+        'post_length': post_length,
+        'like_length': like_length,
+    }
+
+    print(user_object)
+    return render(request, 'main/profile_page.html', context)
 
 
+@login_required(login_url='login')
 def delete_post(request, post_id):
     post = get_object_or_404(Post, id=post_id, user=request.user)
     if post.user == request.user:
         post.delete()
-    return redirect('profile_bio')
-
-
+    return redirect('profile', pk=request.user.username)

@@ -41,6 +41,16 @@
             </div>
 
             <div class="publication__footer">
+                <div class="likes">
+                    <a href="/like_post?post_id={{ post.id }}">
+                    <img src="{% static 'main/images/publications/like.png' %}" alt="">
+                    </a>
+                    <p>{{ post.num_of_likes }}</p>
+                </div>
+
+                <a href="">
+                    <img src="{% static 'main/images/publications/chat.png' %}" alt="">
+                </a>
                 <img class="downloadBtn" src="{% static 'main/images/publications/download.png' %}" alt="">
             </div>
         </div>

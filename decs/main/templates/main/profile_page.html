@@ -2,7 +2,7 @@
 {% load static %}
 
 
-{% block title %} Публикации {% endblock %}
+{% block title %} Профиль: {{ user_profile.user.username }} {% endblock %}
 {% block content %}
 
     <div class="container">
@@ -11,9 +11,16 @@
                 <img class="profile__cover" src="{{ user_profile.cover_img.url }}" alt="Обложка"/>
                 <div class="profile__info">
                     <img class="profile__picture" src="{{ user_profile.profile_img.url }}" alt="Фото профиля"/>
-                    <div class="name_and_bio">
-                        <div class="name">{{ user.username }}</div>
-                        {#                        <div class="biography">Ура! Я пользуюсь DECS.</div>#}
+                    <div class="name_and_follow">
+                        <div class="name">{{ user_profile.user.username }}</div>
+                        <div class="follow">
+                            <span>Подписаться</span>
+                        </div>
+                    </div>
+                    <div class="user_info__stats">
+                        <p>Публикаций: {{ post_length }}</p>
+                        <p>Лайков: {{ like_length }}</p>
+                        <p>Подписчиков: 5000</p>
                     </div>
                 </div>
             </div>
@@ -35,16 +42,18 @@
                                         <img class="profile__picture" src="{{ post.user_profile_img }}"
                                              alt="Фото профиля"/>
                                     </div>
-                                    <div class="user_info__name">{{ post.user }}</div>
+                                    <div class="user_info__name">{{ post.user.username }}</div>
                                 </div>
+                                {% if request.user.username == user_profile.user.username %}
                                 <div class="user_info__x">
                                     <a href="{% url 'delete_post' post.id %}">
                                         <img src="{% static 'main/images/profile/close.png' %}" alt="Удалить пост">
                                     </a>
                                 </div>
+                                {% endif %}
                             </div>
 
-                            <div class="publication-img">
+                            <div class="publication-img open-fullscreen">
                                 <div class="img-overlay">
                                     <img id="downloadImg" src="{{ post.post_img.url }}" alt='Скачать'>
                                     <div class="image-text">
@@ -53,6 +62,7 @@
                                     </div>
                                 </div>
                             </div>
+
 
                             <div class="publication__footer">
                                 <img class="downloadBtn" src="{% static 'main/images/publications/download.png' %}"

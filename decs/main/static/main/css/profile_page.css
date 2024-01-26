@@ -49,18 +49,20 @@
 .profile__info {
     display: flex;
     align-items: center;
-    width: 1200px;
+    width: 1263px;
     position: absolute;
     bottom: -80px;
     padding: 40px;
     color: #ffffff;
 }
 
-.name_and_bio {
+.name_and_follow {
     display: flex;
-    flex-direction: column;
-    gap: 8px;
+    justify-content: center;
+    align-items: center;
+    gap: 20px;
 }
+
 
 .name {
     color: white;
@@ -68,11 +70,55 @@
     font-weight: 900;
 }
 
-.biography {
+
+
+
+.follow {
+    display: inline-block;
+    padding: 15px 20px;
+    background-color: #3498db;
+    color: #fff;
+    font-size: 18px;
+    font-weight: 700;
+    text-decoration: none;
+    cursor: pointer;
+    border-radius: 5px;
+    overflow: hidden;
+    position: relative;
+    transition: background-color 0.3s ease;
+}
+
+.follow:hover {
+    background-color: #2980b9;
+}
+
+.follow::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 0%;
+    height: 100%;
+    background-color: rgba(255, 255, 255, 0.2);
+    transition: width 0.3s ease;
+}
+
+.follow:hover::before {
+    width: 100%;
+}
+
+
+
+
+
+.user_info__stats {
+    display: flex;
+    gap: 30px;
     color: white;
-    font-size: 15px;
-    font-weight: 600;
+    font-size: 20px;
+    font-weight: 700;
     text-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+    padding-left: 180px;
 }
 
 
@@ -171,5 +217,35 @@
     height: 50px;
     border-radius: 50%;
     box-shadow: 0px 2px 2px 1px rgba(0, 0, 0, 0.4);
+}
+
+.fullscreen-overlay {
+    /*padding-right: 200px;*/
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.7);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    z-index: 9999;
+}
+
+.image-container img {
+    max-width: 77vw;
+    max-height: 77vh;
+    border: 2px solid rgba(44, 140, 235, 0.83);
+    border-radius: 10px;
+    background: rgba(58, 191, 251, 0.76);
+}
+
+.image-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
 }
 
