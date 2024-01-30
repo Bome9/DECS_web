@@ -1,7 +1,7 @@
 from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib.auth.models import User, auth
 from accounts.models import Profile, UserData
-from main.models import Post, LikePost
+from main.models import Post, LikePost, Followers
 from django.contrib.auth.decorators import login_required
 
 
@@ -33,6 +33,24 @@ def like_post(request):
         post.num_of_likes = post.num_of_likes - 1
         post.save()
         return redirect('/publications')
+
+
+@login_required(login_url='login')
+def follow(request):
+    if request.method == 'POST':
+        follower = request.POST['follower']
+        user = request.POST['user']
+
+        if Followers.objects.filter(follower=follower, user=user).first():
+            delete_follower = Followers.objects.get(follower=follower, user=user)
+            delete_follower.delete()
+            return redirect('/profile/'+user)
+        else:
+            new_follower = Followers.objects.create(follower=follower, user=user)
+            new_follower.save()
+            redirect('profile'+user)
+    else:
+        return redirect('profile')
 
 
 @login_required(login_url='login')

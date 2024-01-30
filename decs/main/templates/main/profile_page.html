@@ -11,12 +11,17 @@
                 <img class="profile__cover" src="{{ user_profile.cover_img.url }}" alt="Обложка"/>
                 <div class="profile__info">
                     <img class="profile__picture" src="{{ user_profile.profile_img.url }}" alt="Фото профиля"/>
-                    <div class="name_and_follow">
-                        <div class="name">{{ user_profile.user.username }}</div>
-                        <div class="follow">
-                            <span>Подписаться</span>
+                    <form action="/follow" method="POST">
+                        {% csrf_token %}
+                        <div class="name_and_follow">
+                            <div class="name">{{ user_profile.user.username }}</div>
+                            <input type="hidden" value="{{ user.username }}" name="follower">
+                            <input type="hidden" value="{{ user_object.username }}" name="user">
+                            <button type="submit" class="follow">
+                                Подписаться
+                            </button>
                         </div>
-                    </div>
+                    </form>
                     <div class="user_info__stats">
                         <p>Публикаций: {{ post_length }}</p>
                         <p>Лайков: {{ like_length }}</p>
