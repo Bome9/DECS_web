@@ -17,15 +17,18 @@
                             <div class="name">{{ user_profile.user.username }}</div>
                             <input type="hidden" value="{{ user.username }}" name="follower">
                             <input type="hidden" value="{{ user_object.username }}" name="user">
-                            <button type="submit" class="follow">
-                                Подписаться
-                            </button>
+                            {% if user_object.username == user.username %}
+                            {% else  %}
+                                <button type="submit" class="follow {% if button_text == 'Отписаться' %}unfollow{% endif %}">
+                                    <span>{{ button_text }}</span>
+                                </button>
+                            {% endif %}
                         </div>
                     </form>
                     <div class="user_info__stats">
                         <p>Публикаций: {{ post_length }}</p>
                         <p>Лайков: {{ like_length }}</p>
-                        <p>Подписчиков: 5000</p>
+                        <p>Подписчиков: {{ user_followers }}</p>
                     </div>
                 </div>
             </div>

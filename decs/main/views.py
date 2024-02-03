@@ -48,7 +48,7 @@ def follow(request):
         else:
             new_follower = Followers.objects.create(follower=follower, user=user)
             new_follower.save()
-            redirect('profile'+user)
+            return redirect('/profile/'+user)
     else:
         return redirect('profile')
 
@@ -110,12 +110,24 @@ def profile(request, pk):
     post_length = len(posts)
     like_length = len(likes)
 
+    follower = request.user.username
+    user = pk
+
+    if Followers.objects.filter(follower=follower, user=user).first():
+        button_text = 'Отписаться'
+    else:
+        button_text = 'Подписаться'
+
+    user_followers = len(Followers.objects.filter(user=pk))
+
     context = {
         'user_object': user_object,
         'user_profile': user_profile,
         'posts': posts,
         'post_length': post_length,
         'like_length': like_length,
+        'button_text': button_text,
+        'user_followers': user_followers,
     }
 
     print(user_object)

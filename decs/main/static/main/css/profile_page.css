@@ -70,12 +70,11 @@
     font-weight: 900;
 }
 
-
-
-
 .follow {
     display: inline-block;
-    padding: 15px 20px;
+    /*padding: 15px 20px;*/
+    height: 50px;
+    width: 155px;
     background-color: #3498db;
     color: #fff;
     font-size: 18px;
@@ -84,9 +83,19 @@
     cursor: pointer;
     border-radius: 5px;
     overflow: hidden;
-    position: relative;
+    position: absolute;
     transition: background-color 0.3s ease;
     border: none;
+    margin-left: 325px;
+    z-index: 1;
+}
+
+.follow.unfollow {
+    background-color: #e74c3c; /* Красный цвет для отписки */
+}
+
+.follow.unfollow:hover {
+    background-color: #e8473d; /* Красный цвет для отписки */
 }
 
 .follow:hover {
@@ -102,6 +111,7 @@
     height: 100%;
     background-color: rgba(255, 255, 255, 0.2);
     transition: width 0.3s ease;
+    z-index: -1;
 }
 
 .follow:hover::before {
@@ -113,13 +123,14 @@
 
 
 .user_info__stats {
+    position: absolute;
     display: flex;
     gap: 30px;
     color: white;
     font-size: 20px;
     font-weight: 700;
     text-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
-    padding-left: 180px;
+    padding-left: 615px;
 }
 
 
