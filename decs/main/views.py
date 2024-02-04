@@ -3,6 +3,7 @@ from django.contrib.auth.models import User, auth
 from accounts.models import Profile, UserData
 from main.models import Post, LikePost, Followers
 from django.contrib.auth.decorators import login_required
+from itertools import chain
 
 
 def main(request):
@@ -44,11 +45,11 @@ def follow(request):
         if Followers.objects.filter(follower=follower, user=user).first():
             delete_follower = Followers.objects.get(follower=follower, user=user)
             delete_follower.delete()
-            return redirect('/profile/'+user)
+            return redirect('/profile/' + user)
         else:
             new_follower = Followers.objects.create(follower=follower, user=user)
             new_follower.save()
-            return redirect('/profile/'+user)
+            return redirect('/profile/' + user)
     else:
         return redirect('profile')
 
@@ -76,6 +77,26 @@ def publications(request):
     user_profile = Profile.objects.get(user=request.user)
     posts = Post.objects.all()
     return render(request, 'main/publications_page.html', {'user_profile': user_profile, 'posts': posts})
+
+
+@login_required(login_url='login')
+def feed(request):
+    user_profile = Profile.objects.get(user=request.user)
+
+    user_following_list = []
+    feed_list = []
+
+    user_following = Followers.objects.filter(follower=request.user.username)
+
+    for users in user_following:
+        user_following_list.append(users.user)
+
+    for usernames in user_following_list:
+        feed_lists = Post.objects.filter(user__username=usernames)
+        feed_list.append(feed_lists)
+
+    all_feed = list(chain(*feed_list))
+    return render(request, 'main/feed_page.html', {'user_profile': user_profile, 'posts': all_feed})
 
 
 @login_required(login_url='login')
