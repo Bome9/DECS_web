@@ -1,0 +1,43 @@
+{% extends 'main/layout.html' %}
+{% load static %}
+
+
+{% block title %} Результаты поиска: {{ username }}  {% endblock %}
+{% block content %}
+    <div class="container">
+        <div class="intro__wrapper__pub">
+            <div class="intro__block__pub">
+                <h1 class="intro__title__pub">Полученные результаты: {{ results_count }}</h1>
+            </div>
+        </div>
+    </div>
+
+    {% if username_profile_list %}
+        {% for user_data in username_profile_list %}
+        <div class="search_results">
+            <div class="search_results__profile">
+                <div class="search_cover">
+                    <img class="search__profile_cover" src="{{ user_data.profile.cover_img.url }}" alt="">
+                    <div class="search_profile">
+                        <a href="/profile/{{ user_data.user }}"><img src="{{ user_data.profile.profile_img.url }}" alt=""></a>
+                        <a href="/profile/{{ user_data.user }}"><h1>{{ user_data.user.username }}</h1></a>
+                    </div>
+                </div>
+                <div class="stats">
+                    <div class="followers">
+                        <img src="{% static 'main/images/search/followers.png' %}" alt="">
+                        <h1>{{ user_data.followers_count }}</h1>
+                    </div>
+                    <div class="publications">
+                        <img src="{% static 'main/images/search/images.png' %}" alt="">
+                        <h1>{{ user_data.publications_count }}</h1>
+                    </div>
+                </div>
+            </div>
+        </div>
+        {% endfor %}
+    {% else %}
+        <p class="no-results">Ничего не найдено...</p>
+    {% endif %}
+
+{% endblock %}

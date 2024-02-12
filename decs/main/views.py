@@ -4,6 +4,7 @@ from accounts.models import Profile, UserData
 from main.models import Post, LikePost, Followers
 from django.contrib.auth.decorators import login_required
 from itertools import chain
+from django.contrib import messages
 
 
 def main(request):
@@ -70,6 +71,34 @@ def upload(request):
         return redirect('publications')
     else:
         return redirect('publications')
+
+
+@login_required(login_url='login')
+def search(request):
+    username_profile_list = []
+
+    if request.method == 'POST':
+        username = request.POST.get('username', '').strip()
+        if not username:
+            pass
+        else:
+            username_objects = User.objects.filter(username__icontains=username)
+
+            for user in username_objects:
+                profile = Profile.objects.get(user=user)
+                followers_count = Followers.objects.filter(user=user.username).count()
+                publications_count = Post.objects.filter(user=user.id).count()
+                user_data = {
+                    'user': user,
+                    'profile': profile,
+                    'followers_count': followers_count,
+                    'publications_count': publications_count,
+                }
+                username_profile_list.append(user_data)
+
+    return render(request, 'main/search_page.html',
+                  {'username_profile_list': username_profile_list, 'username': username,
+                   'results_count': len(username_profile_list)})
 
 
 @login_required(login_url='login')

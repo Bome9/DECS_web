@@ -13,6 +13,7 @@
     <link rel="stylesheet" href=" {% static 'main/css/publications_page_style.css' %}">
     <link rel="stylesheet" href=" {% static 'main/css/settings_page.css' %}">
     <link rel="stylesheet" href=" {% static 'main/css/profile_page.css' %}">
+    <link rel="stylesheet" href=" {% static 'main/css/search_page.css' %}">
     <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons" />
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@8/swiper-bundle.min.css"/>
     <script src="https://cdn.jsdelivr.net/npm/swiper@8/swiper-bundle.min.js"></script>
@@ -32,6 +33,16 @@
                 </nav>
 
                 <div class="header__menu">
+                    <form action="/search" method="POST">
+                        {% csrf_token %}
+                        <div class="search">
+                            <input type="text" name="username" placeholder="Введите запрос" class="search__input" autocomplete="off" />
+                            <button class="search__button" type="submit">
+                                <img src="{% static 'main/images/inspiration/search.png' %}" alt="Поиск" />
+                            </button>
+                        </div>
+                    </form>
+
                     <div class="nav__menu profile" id="profile-button">
                         <img src="{% static 'main/images/inspiration/profile.png' %}" alt="Профиль"/>
                         <span class="underline-animation">Профиль</span>

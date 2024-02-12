@@ -1,0 +1,155 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700;900&display=swap');
+
+*,
+*:before,
+*:after {
+    box-sizing: border-box;
+}
+
+
+.search-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}
+
+.search {
+    width: 180px;
+    height: 37px;
+    border: 2px solid #ffffff;
+    border-radius: 35px;
+    display: flex;
+    align-items: center;
+    overflow: hidden;
+}
+
+.search__input {
+    flex: 1;
+    border: none;
+    outline: none;
+    padding: 10px;
+    border-radius: 35px;
+    background-color: transparent;
+    color: white;
+    width: 100px;
+    font-size: 14px;
+
+}
+
+.search__input::placeholder {
+    color: white;
+}
+
+
+.search__button {
+    background-color: transparent;
+    border: none;
+    cursor: pointer;
+    padding: 17px;
+    margin-left: -25px;
+}
+
+.search__button img {
+    width: 20px;
+    height: 20px;
+}
+
+
+
+
+.no-results{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 32px;
+    font-weight: 600;
+    margin-bottom: 301px;
+}
+
+.search_results{
+    max-width: 1120px;
+    margin: 0 auto;
+    background-color: #46C5FB;
+    height: 200px;
+    border-radius: 35px;
+}
+
+.search_results__profile{
+    display: flex;
+    margin-top: 30px;
+}
+
+.search_cover{
+    display: flex;
+    max-height: 200px;
+    max-width: 570px;
+    position: relative;
+}
+
+.search_cover::after {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.3);
+    z-index: 1;
+    border-radius: 35px;;
+}
+
+
+.search__profile_cover{
+    height: 200px;
+    width: 570px;
+    object-fit: cover;
+    border-radius: 35px;
+    z-index: 0;
+}
+
+
+.search_profile{
+    position: absolute;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 20px;
+    left: 30px;
+    top: 50px;
+    z-index: 2;
+}
+
+.search_profile h1,
+.stats h1{
+    font-size: 36px;
+    font-weight: 800;
+}
+
+.search_profile img{
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+}
+
+.stats .followers,
+.stats .publications{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 15px;
+}
+
+
+.stats{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 70px;
+    margin-left: 80px;
+}
+
+.stats img{
+    height: 70px;
+    width: 70px;
+}
