@@ -4,7 +4,7 @@ from accounts.models import Profile, UserData
 from main.models import Post, LikePost, Followers
 from django.contrib.auth.decorators import login_required
 from itertools import chain
-from django.contrib import messages
+from django.http import JsonResponse
 
 
 def main(request):
@@ -29,12 +29,25 @@ def like_post(request):
         new_like.save()
         post.num_of_likes = post.num_of_likes + 1
         post.save()
-        return redirect('/publications')
+        return JsonResponse({'num_of_likes': post.num_of_likes})
     else:
         like_filter.delete()
         post.num_of_likes = post.num_of_likes - 1
         post.save()
-        return redirect('/publications')
+        return JsonResponse({'num_of_likes': post.num_of_likes})
+
+
+def post(request, post_id):
+    post_objects = get_object_or_404(Post, id=post_id)
+    author_profile = Profile.objects.get(user=post_objects.user)
+    user_profile = Profile.objects.get(user=request.user)
+
+    context = {
+        'post_objects': post_objects,
+        'user_profile': user_profile,
+        'author_profile': author_profile,
+    }
+    return render(request, 'main/post_page.html', context)
 
 
 @login_required(login_url='login')
@@ -105,7 +118,15 @@ def search(request):
 def publications(request):
     user_profile = Profile.objects.get(user=request.user)
     posts = Post.objects.all()
-    return render(request, 'main/publications_page.html', {'user_profile': user_profile, 'posts': posts})
+    liked_posts = LikePost.objects.filter(username=request.user.username).values_list('post_id', flat=True)
+
+    context = {
+        'user_profile': user_profile,
+        'posts': posts,
+        'liked_posts': liked_posts,
+    }
+
+    return render(request, 'main/publications_page.html', context)
 
 
 @login_required(login_url='login')

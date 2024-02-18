@@ -6,6 +6,7 @@ urlpatterns = [
     path('inspiration/', views.inspiration, name='inspiration'),
     path('upload/', views.upload, name='upload'),
     path('search', views.search, name='search'),
+    path('post/<uuid:post_id>/', views.post, name='post'),
     path('follow', views.follow, name='follow'),
     path('like_post/', views.like_post, name='like_post'),
     path('publications/', views.publications, name='publications'),

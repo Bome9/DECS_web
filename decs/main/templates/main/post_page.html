@@ -1,0 +1,92 @@
+{% extends 'main/layout.html' %}
+{% load static %}
+
+
+{% block title %} Фото {% endblock %}
+{% block content %}
+    <div class="container">
+        <div class="overlay_container">
+            <div class="image_container">
+                <img src="{{ post_objects.post_img.url }}" alt="" class="fullscreen-image">
+                <div class="image_fullscreen">Нажмите, чтобы открыть в полноэкранном режиме</div>
+            </div>
+
+            <div class="info_container">
+                <div class="image_stats">
+                    <div class="image_stats__likes">
+                        <img src="{% static 'main/images/post/likes.png' %}" alt="">
+                        <h3>{{ post_objects.num_of_likes }}</h3>
+                    </div>
+                    <div class="image_stats__views">
+                        <img src="{% static 'main/images/post/views.png' %}" alt="">
+                        <h3>5244</h3>
+                    </div>
+                </div>
+
+                <div class="author_profile">
+                    <img src="{{ author_profile.profile_img.url }}" alt="">
+                    <h3>{{ post_objects.user.username }}</h3>
+                </div>
+
+                <div class="comments_container">
+                    <div class="user_avatar">
+                        <img src="{{ user_profile.profile_img.url }}" alt="">
+                    </div>
+
+                    <form action="" method="">
+                        <div class="comment_box">
+                            <textarea rows="1" id="comment" name="commen" placeholder="Оставьте комментарий..."
+                                class="comment__text" autocomplete="off"></textarea>
+                        </div>
+                        <div class="comment_btns">
+                            <button class="clear__button" type="button">
+                                Очистить
+                            </button>
+                            <button class="comment__button" type="submit">
+                                Поделиться
+                            </button>
+                        </div>
+                    </form>
+
+                    <div class="comments">
+                        <div class="comment">
+                            <div class="comment__info">
+                                <div class="comment__author">
+                                    <img src="images/5b013ab88cddf01a678e631df9f35da8.png" alt="">
+                                    <h3>john3</h3>
+                                </div>
+                                <div class="date_and_delete">
+                                    <span>17.02.2024</span>
+                                    <a href="#">
+                                        <img class="comment__delete" src="{% static 'main/images/post/delete.png' %}" alt="">
+                                    </a>
+                                </div>
+                            </div>
+                            <div class="comment__content">
+                                <p>This picture is really amazing and i think it could be on a billboard!</p>
+                            </div>
+                        </div>
+
+                        <div class="comment">
+                            <div class="comment__info">
+                                <div class="comment__author">
+                                    <img src="images/alice-donovan.jpg" alt="">
+                                    <h3>john1</h3>
+                                </div>
+                                <div class="date_and_delete">
+                                    <span>27.11.2023</span>
+                                    <!-- <a href="#">
+                                        <img class="comment__delete" src="images/delete.png" alt="">
+                                    </a> -->
+                                </div>
+                            </div>
+                            <div class="comment__content">
+                                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed non risus. Suspendisse lectus tortor, dignissim sit amet, adipiscing nec, ultricies sed, dolor. Cras elementum ultrices diam. Maecenas ligula massa, varius a, semper congue, euismod non, mi.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}

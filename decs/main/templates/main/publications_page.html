@@ -27,12 +27,13 @@
                     </div>
                     <a href="/profile/{{ post.user }}"><div class="user_info__name">{{ post.user }}</div></a>
                 </div>
-                <!-- <img class="user_info__img" src="images/more.png" alt=""> -->
             </div>
 
             <div class="publication-img">
                 <div class="img-overlay">
-                    <img id="downloadImg" src="{{ post.post_img.url }}" alt="">
+                    <a href="{% url 'post' post_id=post.id %}">
+                        <img id="downloadImg" src="{{ post.post_img.url }}" alt="">
+                    </a>
                     <div class="image-text">
                         <h3>{{ post.title }}</h3>
                         <p>{{ post.description }}</p>
@@ -42,10 +43,10 @@
 
             <div class="publication__footer">
                 <div class="likes">
-                    <a href="/like_post?post_id={{ post.id }}">
-                    <img src="{% static 'main/images/publications/like.png' %}" alt="">
+                    <a href="#" class="like-btn" data-post-id="{{ post.id }}">
+                        <img src="{% static 'main/images/publications/like.png' %}" alt="">
                     </a>
-                    <p>{{ post.num_of_likes }}</p>
+                    <p id="likes-count-{{ post.id }}">{{ post.num_of_likes }}</p>
                 </div>
 
                 <a href="">
