@@ -48,10 +48,12 @@
                     </a>
                     <p id="likes-count-{{ post.id }}">{{ post.num_of_likes }}</p>
                 </div>
-
-                <a href="">
-                    <img src="{% static 'main/images/publications/chat.png' %}" alt="">
-                </a>
+                <div class="likes">
+                    <a href="{% url 'post' post_id=post.id %}">
+                        <img src="{% static 'main/images/publications/comment.png' %}" alt="">
+                    </a>
+                    <p>{{ post.num_comments }}</p>
+                </div>
                 <img class="downloadBtn" src="{% static 'main/images/publications/download.png' %}" alt="">
             </div>
         </div>

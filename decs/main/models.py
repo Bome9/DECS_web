@@ -51,7 +51,7 @@ class Followers(models.Model):
 class Comments(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE)
     post = models.ForeignKey(Post, on_delete=models.CASCADE, related_name='comments')
-    content = models.TextField()
+    content = models.TextField(max_length=500)
     date = models.DateTimeField(auto_now_add=True)
 
     def __str__(self):

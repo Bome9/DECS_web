@@ -1,7 +1,8 @@
+from django.db.models import Count
 from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib.auth.models import User, auth
 from accounts.models import Profile, UserData
-from main.models import Post, LikePost, Followers
+from main.models import Post, LikePost, Followers, Comments
 from django.contrib.auth.decorators import login_required
 from itertools import chain
 from django.http import JsonResponse
@@ -37,7 +38,33 @@ def like_post(request):
         return JsonResponse({'num_of_likes': post.num_of_likes})
 
 
+@login_required(login_url='login')
+def comment(request):
+    post_id = request.POST.get('post_id')
+    if request.method == 'POST':
+        comment_text = request.POST['comment']
+        if post_id and comment_text:
+            post = Post.objects.get(pk=post_id)
+            Comments.objects.create(
+                user=request.user,
+                post=post,
+                content=comment_text
+            )
+        return redirect('post', post_id=post_id)
+    return redirect('post', post_id=post_id)
+
+
+def delete_comment(request):
+    post_id = request.GET.get('post_id')
+    comment_id = request.GET.get('comment_id')
+    if post_id and comment_id:
+        comment = get_object_or_404(Comments, id=comment_id, user_id=request.user.id, post_id=post_id)
+        comment.delete()
+    return redirect('post', post_id=post_id)
+
+
 def post(request, post_id):
+    comments = Comments.objects.filter(post_id=post_id)
     post_objects = get_object_or_404(Post, id=post_id)
     author_profile = Profile.objects.get(user=post_objects.user)
     user_profile = Profile.objects.get(user=request.user)
@@ -46,8 +73,18 @@ def post(request, post_id):
         'post_objects': post_objects,
         'user_profile': user_profile,
         'author_profile': author_profile,
+        'comments': comments,
     }
+
     return render(request, 'main/post_page.html', context)
+
+
+@login_required(login_url='login')
+def delete_post(request, post_id):
+    post = get_object_or_404(Post, id=post_id, user=request.user)
+    if post.user == request.user:
+        post.delete()
+    return redirect('profile', pk=request.user.username)
 
 
 @login_required(login_url='login')
@@ -120,11 +157,15 @@ def publications(request):
     posts = Post.objects.all()
     liked_posts = LikePost.objects.filter(username=request.user.username).values_list('post_id', flat=True)
 
+    posts_with_comments_count = Post.objects.annotate(num_comments=Count('comments'))
+
     context = {
         'user_profile': user_profile,
-        'posts': posts,
+        'posts': posts_with_comments_count,
         'liked_posts': liked_posts,
     }
+
+    print(posts_with_comments_count)
 
     return render(request, 'main/publications_page.html', context)
 
@@ -146,7 +187,15 @@ def feed(request):
         feed_list.append(feed_lists)
 
     all_feed = list(chain(*feed_list))
-    return render(request, 'main/feed_page.html', {'user_profile': user_profile, 'posts': all_feed})
+
+    all_feed_with_comments_count = Post.objects.filter(id__in=[post.id for post in all_feed]).annotate(num_comments=Count('comments'))
+
+    context = {
+        'user_profile': user_profile,
+        'posts': all_feed_with_comments_count,
+    }
+
+    return render(request, 'main/feed_page.html', context)
 
 
 @login_required(login_url='login')
@@ -168,7 +217,6 @@ def settings(request):
 
             user_profile.save()
             return redirect('settings')
-
     return render(request, 'main/settings_page.html', {'user_profile': user_profile})
 
 
@@ -201,13 +249,8 @@ def profile(request, pk):
         'user_followers': user_followers,
     }
 
-    print(user_object)
+    print(posts)
     return render(request, 'main/profile_page.html', context)
 
 
-@login_required(login_url='login')
-def delete_post(request, post_id):
-    post = get_object_or_404(Post, id=post_id, user=request.user)
-    if post.user == request.user:
-        post.delete()
-    return redirect('profile', pk=request.user.username)
+
