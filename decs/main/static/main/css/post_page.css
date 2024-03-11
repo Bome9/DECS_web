@@ -208,27 +208,31 @@
     width: 230px;
     min-height: 100px;
     display: flex;
-    align-items: center;
+    align-items: flex-start;
     background-color: #4D79EC;
     border-radius: 12px;
     margin-top: 20px;
     flex-direction: column;
+    position: relative;
 }
 
 
 .comment__info{
     display: flex;
     align-items: center;
-    justify-content: center;
-    gap: 30px;
+    justify-content: space-between;
+    box-sizing: border-box;
+    position: relative;
+    margin-bottom: 5px;
+    width: 100%;
 }
-
 
 .comment__author{
     display: flex;
     justify-content: center;
     align-items: center;
     gap: 5px;
+    text-align: start;
 }
 
 .comment__author img{
@@ -248,21 +252,23 @@
 }
 
 
-.date_and_delete{
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    gap: 5px;
-}
-
 .comment__delete{
     display: block;
     height: 15px;
     width: 15px;
 }
 
-.comment__content{
+.comment__date{
+    margin: auto;
+    text-align: center;
+}
+
+.date {
     margin-top: 10px;
+}
+
+.comment__content{
+    margin: auto;
     font-weight: 600;
     font-size: 16px;
     overflow: hidden;

@@ -7,9 +7,6 @@
 }
 
 
-
-
-
 .header__menu {
     margin-right: 20px;
     display: flex;
@@ -345,11 +342,11 @@
 
 .categories .arrow__icon {
     height: 15px;
-    transition: transform 0.3s ease; /* Добавляем переход для свойства transform */
+    transition: transform 0.3s ease;
 }
 
 .categories.open .arrow__icon {
-    transform: rotate(180deg); /* Поворачиваем иконку на 180 градусов */
+    transform: rotate(180deg);
 }
 
 

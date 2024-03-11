@@ -70,8 +70,7 @@
                                         <h3>{{ comment.user.username }}</h3>
                                     </a>
                                 </div>
-                                <div class="date_and_delete">
-                                    <span>{{ comment.date|date:"d.m.Y" }}</span>
+                                <div class="comments__delete">
                                     {% if request.user.username == comment.user.username  %}
                                     <a href="{% url 'delete_comment' %}?post_id={{ comment.post.id }}&comment_id={{ comment.id }}">
                                         <img class="comment__delete" src="{% static 'main/images/post/delete.png' %}" alt="">
@@ -81,6 +80,9 @@
                             </div>
                             <div class="comment__content">
                                 <p>{{ comment.content }}</p>
+                            </div>
+                            <div class="comment__date">
+                                <div class="date">{{ comment.date|date:"d.m.Y" }}</div>
                             </div>
                         </div>
                         {% endfor %}

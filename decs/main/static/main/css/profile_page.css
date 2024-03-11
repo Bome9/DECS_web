@@ -72,7 +72,6 @@
 
 .follow {
     display: inline-block;
-    /*padding: 15px 20px;*/
     height: 50px;
     width: 155px;
     background-color: #3498db;
@@ -91,11 +90,11 @@
 }
 
 .follow.unfollow {
-    background-color: #e74c3c; /* Красный цвет для отписки */
+    background-color: #e74c3c;
 }
 
 .follow.unfollow:hover {
-    background-color: #e8473d; /* Красный цвет для отписки */
+    background-color: #e8473d;
 }
 
 .follow:hover {
@@ -232,7 +231,6 @@
 }
 
 .fullscreen-overlay {
-    /*padding-right: 200px;*/
     position: fixed;
     top: 0;
     left: 0;

@@ -19,25 +19,23 @@ document.addEventListener("DOMContentLoaded", function () {
 
     document.querySelectorAll('.like-btn').forEach(item => {
         item.addEventListener('click', event => {
-            event.preventDefault(); // Предотвращаем переход по ссылке
+            event.preventDefault();
 
-            const postId = item.dataset.postId; // Получаем ID поста из атрибута data-post-id
-            likePost(postId); // Вызываем функцию для отправки запроса на сервер
+            const postId = item.dataset.postId;
+            likePost(postId);
         });
     });
 
-        // Функция для отправки асинхронного запроса на сервер
     function likePost(postId) {
         fetch(`/like_post?post_id=${postId}`, {
             method: 'GET',
             headers: {
                 'Content-Type': 'application/json',
-                'X-Requested-With': 'XMLHttpRequest' // Этот заголовок указывает Django, что это AJAX-запрос
+                'X-Requested-With': 'XMLHttpRequest'
             }
         })
         .then(response => response.json())
         .then(data => {
-                // Обновляем количество лайков на странице
             document.getElementById(`likes-count-${postId}`).innerText = data.num_of_likes;
         })
         .catch(error => {
