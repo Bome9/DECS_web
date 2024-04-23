@@ -2,7 +2,7 @@ from django.db.models import Count
 from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib.auth.models import User, auth
 from accounts.models import Profile, UserData
-from main.models import Post, LikePost, Followers, Comments
+from main.models import Post, LikePost, Followers, Comments, Category
 from django.contrib.auth.decorators import login_required
 from itertools import chain
 from django.http import JsonResponse
@@ -13,7 +13,13 @@ def main(request):
 
 
 def inspiration(request):
-    return render(request, 'main/inspiration_page.html')
+    posts = Post.objects.all().order_by('-date')
+    return render(request, 'main/inspiration_page.html', {"posts": posts})
+
+
+def filter_by_category(request, category_name):
+    posts = Post.objects.filter(category__name=category_name)
+    return render(request, 'main/inspiration_page.html', {'posts': posts})
 
 
 @login_required(login_url='login')
@@ -68,6 +74,8 @@ def post(request, post_id):
     post_objects = get_object_or_404(Post, id=post_id)
     author_profile = Profile.objects.get(user=post_objects.user)
     user_profile = Profile.objects.get(user=request.user)
+    post_objects.num_of_views += 1
+    post_objects.save()
 
     context = {
         'post_objects': post_objects,
@@ -108,14 +116,15 @@ def follow(request):
 @login_required(login_url='login')
 def upload(request):
     if request.method == 'POST':
-
-        # user = request.user.username
         post_img = request.FILES.get('image_upload')
         title = request.POST['post_title']
         description = request.POST['post_description']
+        category_name = request.POST['post_category']
 
-        if title and post_img:
-            new_post = Post.objects.create(user=request.user, post_img=post_img, title=title, description=description)
+        category = Category.objects.get(name=category_name)
+
+        if title and post_img and category:
+            new_post = Post.objects.create(user=request.user, post_img=post_img, title=title, description=description, category=category)
             new_post.save()
 
         return redirect('publications')
@@ -154,10 +163,10 @@ def search(request):
 @login_required(login_url='login')
 def publications(request):
     user_profile = Profile.objects.get(user=request.user)
-    posts = Post.objects.all()
+    posts = Post.objects.all().order_by('date')
     liked_posts = LikePost.objects.filter(username=request.user.username).values_list('post_id', flat=True)
 
-    posts_with_comments_count = Post.objects.annotate(num_comments=Count('comments'))
+    posts_with_comments_count = Post.objects.annotate(num_comments=Count('comments')).order_by('-date')
 
     context = {
         'user_profile': user_profile,

@@ -27,31 +27,31 @@
                     <img class="arrow__icon" src="{% static 'main/images/inspiration/arrow.png' %}" alt="Профиль"/>
                     <div class="dropdown__categories" id="categories-dropdown">
                         <div class="triangle"></div>
-                        <a href="#">
-                            Архитектура
+                        <a href="{% url 'filter_by_category' 'design' %}">
+                            Дизайн
                         </a>
-                        <a href="#">
-                            Пейзаж
+                        <a href="{% url 'filter_by_category' 'brands' %}">
+                            Бренды
                         </a>
-                        <a href="#">
-                            Концерт
+                        <a href="{% url 'filter_by_category' 'illustrations' %}">
+                            Иллюстрации
                         </a>
-                        <a href="#">
+                        <a href="{% url 'filter_by_category' 'photos' %}">
+                            Фотографии
+                        </a>
+                        <a href="{% url 'filter_by_category' 'paintings' %}">
+                            Картины
+                        </a>
+                        <a href="{% url 'filter_by_category' 'vogue' %}">
                             Мода
                         </a>
-                        <a href="#">
-                            Портрет
-                        </a>
-                        <a href="#">
-                            Природа
-                        </a>
-                        <a href="#">
-                            Животные
+                        <a href="{% url 'filter_by_category' '3d-art' %}">
+                            3d-art
                         </a>
                     </div>
                 </div>
                 <div class="nav2__wrapper selections">
-                    <a class="nav__link" href="#"> Новинки </a>
+                    <a class="nav__link" href="{% url 'inspiration' %}"> Новинки </a>
                     <a class="nav__link" href="#"> Наш выбор </a>
                     <a class="nav__link" href="#"> Популярное </a>
                 </div>
@@ -61,7 +61,15 @@
 
     <div class="gallery">
         <div class="container">
-            <div class="gallery__block" id="gallery"></div>
+            <div class="gallery__container">
+                {% for post in posts %}
+                <div class="gallery__block">
+                    <a href="{% url 'post' post_id=post.id %}">
+                        <img src="{{ post.post_img.url }}" alt="{{ post.title }}">
+                    </a>
+                </div>
+                {% endfor %}
+            </div>
         </div>
     </div>
 

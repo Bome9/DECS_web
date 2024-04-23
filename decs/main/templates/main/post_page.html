@@ -7,9 +7,20 @@
     <div class="container">
         <div class="overlay_container">
             <div class="image_container">
-                <img src="{{ post_objects.post_img.url }}" alt="" class="fullscreen-image">
-                <div class="image_fullscreen">Нажмите, чтобы открыть в полноэкранном режиме</div>
+                <div class="image_container__img">
+                    <img src="{{ post_objects.post_img.url }}" alt="" class="fullscreen-image">
+                    <div class="image_fullscreen">Нажмите, чтобы открыть в полноэкранном режиме</div>
+                </div>
+                <div class="image_container__img-description">
+                    <h1>{{ post_objects.title }}</h1>
+                    {% if post_objects.description %}
+                        <p>{{ post_objects.description }}</p>
+                    {% else %}
+                        <p>Без описания</p>
+                    {% endif %}
+                </div>
             </div>
+
 
             <div class="info_container">
                 <div class="image_stats">
@@ -21,7 +32,7 @@
                     </div>
                     <div class="image_stats__views">
                         <img src="{% static 'main/images/post/views.png' %}" alt="">
-                        <h3>5244</h3>
+                        <h3>{{ post_objects.num_of_views }}</h3>
                     </div>
                 </div>
 

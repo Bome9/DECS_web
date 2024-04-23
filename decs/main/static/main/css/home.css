@@ -19,6 +19,7 @@ a {
 .container {
     padding-top: 1px;
     max-width: 1270px;
+    min-height: 100px;
     margin: 0 auto;
 }
 

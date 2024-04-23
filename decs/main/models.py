@@ -8,13 +8,22 @@ from accounts.models import Profile
 User = get_user_model()
 
 
+class Category(models.Model):
+    name = models.CharField(max_length=50)
+
+    def __str__(self):
+        return self.name
+
+
 class Post(models.Model):
     id = models.UUIDField(primary_key=True, default=uuid.uuid4)
     user = models.ForeignKey(User, on_delete=models.CASCADE)
     title = models.CharField(max_length=25)
     description = models.CharField(max_length=70, blank=True)
     date = models.DateTimeField(default=datetime.now)
-    num_of_likes = models.IntegerField(default=0)
+    num_of_likes = models.PositiveIntegerField(default=0)
+    num_of_views = models.PositiveIntegerField(default=0)
+    category = models.ForeignKey(Category, on_delete=models.SET_NULL, null=True, blank=True)
 
     def user_profile_img(self):
         # Получаем профиль пользователя

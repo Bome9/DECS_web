@@ -1,5 +1,5 @@
 const gallery = document.getElementById('gallery');
-const accessKey = 'rp7OeT-mm-IpBTCIvjY9OKbqkka3fh11e50iRKfIv5M';
+const accessKey = 'qcr8SIfIW9E3qKJDFF1m1b8Z5Phpu97_YnVI2aq7pvk';
 let page = 1;
 
 const loadPhotos = () => {
