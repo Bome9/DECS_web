@@ -75,6 +75,19 @@
     border-radius: 35px;
 }
 
+.tab_results {
+    display: none;
+}
+
+.search_tabs {
+    justify-content: center;
+    margin-top: 50px;
+    display: flex;
+    gap: 40px;
+    font-weight: 900;
+    font-size: 24px;
+    color: #ffffff;
+}
 .search_results__profile{
     display: flex;
     margin-top: 30px;

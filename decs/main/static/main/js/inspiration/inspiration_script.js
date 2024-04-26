@@ -1,39 +1,39 @@
-const gallery = document.getElementById('gallery');
-const accessKey = 'qcr8SIfIW9E3qKJDFF1m1b8Z5Phpu97_YnVI2aq7pvk';
-let page = 1;
-
-const loadPhotos = () => {
-  fetch(`https://api.unsplash.com/photos/random?count=24&query=Art_Design&client_id=${accessKey}&page=${page}`)
-    .then((response) => response.json())
-    .then((data) => {
-      data.forEach((photo) => {
-        const imageElement = document.createElement('div');
-        imageElement.classList.add('image');
-        imageElement.style.setProperty('--bg', `url(${photo.urls.regular})`);
-        gallery.appendChild(imageElement);
-      });
-      page++;
-    })
-    .catch((error) => {
-      console.error('Ошибка при загрузке изображений:', error);
-    });
-};
-
-
-const isAtEndOfPage = () => {
-  const scrollY = window.scrollY;
-  const windowHeight = window.innerHeight;
-  const bodyHeight = document.body.offsetHeight;
-  return scrollY + windowHeight >= bodyHeight;
-};
-
-window.addEventListener('scroll', () => {
-  if (isAtEndOfPage()) {
-    loadPhotos();
-  }
-});
-
-loadPhotos();
+// const gallery = document.getElementById('gallery');
+// const accessKey = 'qcr8SIfIW9E3qKJDFF1m1b8Z5Phpu97_YnVI2aq7pvk';
+// let page = 1;
+//
+// const loadPhotos = () => {
+//   fetch(`https://api.unsplash.com/photos/random?count=24&query=Art_Design&client_id=${accessKey}&page=${page}`)
+//     .then((response) => response.json())
+//     .then((data) => {
+//       data.forEach((photo) => {
+//         const imageElement = document.createElement('div');
+//         imageElement.classList.add('image');
+//         imageElement.style.setProperty('--bg', `url(${photo.urls.regular})`);
+//         gallery.appendChild(imageElement);
+//       });
+//       page++;
+//     })
+//     .catch((error) => {
+//       console.error('Ошибка при загрузке изображений:', error);
+//     });
+// };
+//
+//
+// const isAtEndOfPage = () => {
+//   const scrollY = window.scrollY;
+//   const windowHeight = window.innerHeight;
+//   const bodyHeight = document.body.offsetHeight;
+//   return scrollY + windowHeight >= bodyHeight;
+// };
+//
+// window.addEventListener('scroll', () => {
+//   if (isAtEndOfPage()) {
+//     loadPhotos();
+//   }
+// });
+//
+// loadPhotos();
 
 
 

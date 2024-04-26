@@ -1,3 +1,4 @@
+from django.contrib import messages
 from django.db.models import Count
 from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib.auth.models import User, auth
@@ -117,34 +118,53 @@ def follow(request):
 def upload(request):
     if request.method == 'POST':
         post_img = request.FILES.get('image_upload')
-        title = request.POST['post_title']
-        description = request.POST['post_description']
-        category_name = request.POST['post_category']
+        title = request.POST.get('post_title')
+        description = request.POST.get('post_description')
+        category_name = request.POST.get('post_category')
+
+        error_messages = []
+
+        if not post_img:
+            error_messages.append('Не выбрана фотография для загрузки.')
+
+        if not title:
+            error_messages.append('Не указано название для работы.')
+
+        if not category_name:
+            error_messages.append('Не выбрана категория для работы.')
+
+        if post_img and post_img.size > 10 * 1024 * 1024:
+            error_messages.append('Файл слишком большой (макс. 10 Мб)')
+
+        allowed_types = ['image/jpeg', 'image/png', 'image/gif']
+        if post_img and post_img.content_type not in allowed_types:
+            error_messages.append('Неверный формат файла (допустимы jpeg, png, gif)')
+
+        if error_messages:
+            return JsonResponse({'error_messages': error_messages}, status=400)
 
         category = Category.objects.get(name=category_name)
 
-        if title and post_img and category:
-            new_post = Post.objects.create(user=request.user, post_img=post_img, title=title, description=description, category=category)
-            new_post.save()
+        new_post = Post.objects.create(user=request.user, post_img=post_img, title=title,
+                                       description=description, category=category)
+        new_post.save()
 
-        return redirect('publications')
-    else:
-        return redirect('publications')
+        return JsonResponse({'redirect_url': '/publications'})
 
 
 @login_required(login_url='login')
 def search(request):
-    username_profile_list = []
+    search_query = request.POST.get('search_query', '').strip()
+    search_results = {'users': [], 'posts': []}
+    search_results_count = 0
 
-    if request.method == 'POST':
-        username = request.POST.get('username', '').strip()
-        if not username:
-            pass
-        else:
-            username_objects = User.objects.filter(username__icontains=username)
-
-            for user in username_objects:
-                profile = Profile.objects.get(user=user)
+    if search_query:
+        # Поиск пользователей
+        username_objects = User.objects.filter(username__icontains=search_query)
+        for user in username_objects:
+            # Попробуем получить профиль пользователя
+            profile = Profile.objects.filter(user=user).first()
+            if profile:
                 followers_count = Followers.objects.filter(user=user.username).count()
                 publications_count = Post.objects.filter(user=user.id).count()
                 user_data = {
@@ -153,11 +173,16 @@ def search(request):
                     'followers_count': followers_count,
                     'publications_count': publications_count,
                 }
-                username_profile_list.append(user_data)
+                search_results['users'].append(user_data)
 
-    return render(request, 'main/search_page.html',
-                  {'username_profile_list': username_profile_list, 'username': username,
-                   'results_count': len(username_profile_list)})
+        # Поиск работ
+        posts = Post.objects.filter(title__icontains=search_query)
+        search_results['posts'] = posts
+
+        search_results_count = len(search_results["users"]) + len(search_results["posts"])
+
+    return render(request, 'main/search_page.html', {'search_results': search_results, 'search_query': search_query,
+                                                     "search_results_count": search_results_count})
 
 
 @login_required(login_url='login')

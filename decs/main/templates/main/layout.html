@@ -38,7 +38,7 @@
                     <form action="/search" method="POST">
                         {% csrf_token %}
                         <div class="search">
-                            <input type="text" name="username" placeholder="Введите запрос" class="search__input" autocomplete="off" />
+                            <input type="text" name="search_query" placeholder="Введите запрос" class="search__input" autocomplete="off" />
                             <button class="search__button" type="submit">
                                 <img src="{% static 'main/images/inspiration/search.png' %}" alt="Поиск" />
                             </button>
@@ -86,15 +86,26 @@
         <div class="upload__form">
             <span class="close_btn" id="closeBtn">&times;</span>
             <h2>Загрузка работы</h2>
-            <form action="/upload/" method="POST" enctype="multipart/form-data">
+            <form action="/upload/" method="POST" enctype="multipart/form-data" id="uploadForm">
                 {% csrf_token %}
                 <div class="upload__content">
                     <div id="dropArea" class="drop_area">
                         <span class="material-icons cloud-upload">cloud_upload</span>
                         <p>Поделитесь своим творчеством</p>
                         <p>и</p>
-                        <input type="file" id="fileInput" name="image_upload" />
+                        <input type="file" id="fileInput" name="image_upload" accept="image/*" />
                         <label for="fileInput" class="choose_file">Выберите файл</label>
+
+                        <div id="errorMessages" class="error-messages">
+                            {% if messages %}
+                                <ul class="messages">
+                                    {% for message in messages %}
+                                        <li><h2>{{ message }}</h2></li>
+                                    {% endfor %}
+                                </ul>
+                            {% endif %}
+                        </div>
+
                     </div>
                     <div class="input_fields">
                         <label for="post_title">Название:</label>
@@ -159,6 +170,7 @@
 <script src="{% static 'main/js/profile/profile_script.js' %}"></script>
 <script src="{% static 'main/js/publications/publications_script.js' %}" defer></script>
 <script src="{% static 'main/js/post/post_script.js' %}"></script>
+<script src="{% static 'main/js/search/search_script.js' %}"></script>
 </body>
 
 </html>

@@ -173,6 +173,13 @@
     margin: 5px 0;
 }
 
+.error-messages {
+    margin-top: 10px;
+    color: #26f5f5;
+    font-weight: 600;
+    font-size: 18px;
+}
+
 .material-icons.cloud-upload{
     font-size: 70px;
 }
