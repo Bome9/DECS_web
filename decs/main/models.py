@@ -10,7 +10,6 @@ User = get_user_model()
 
 class Category(models.Model):
     name = models.CharField(max_length=50)
-
     def __str__(self):
         return self.name
 
@@ -24,19 +23,14 @@ class Post(models.Model):
     num_of_likes = models.PositiveIntegerField(default=0)
     num_of_views = models.PositiveIntegerField(default=0)
     category = models.ForeignKey(Category, on_delete=models.SET_NULL, null=True, blank=True)
-
     def user_profile_img(self):
         # Получаем профиль пользователя
         profile = Profile.objects.get(user=self.user)
         return profile.profile_img.url if profile.profile_img else ''
-
     def post_image_path(instance, filename):
         extension = os.path.splitext(filename)[1]
-
         return f'post_images/{instance.user.username}/{instance.id}{extension}'
-
     post_img = models.ImageField(upload_to=post_image_path)
-
     def __str__(self):
         return self.user.username
 
